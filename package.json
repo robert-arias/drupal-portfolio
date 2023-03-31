@@ -1,0 +1,37 @@
+{
+  "name": "sous-project",
+  "version": "0.0.1",
+  "description": "A starter kit for a Drupal project",
+  "scripts": {
+    "confim": "./scripts/sous/confim.sh",
+    "confex": "./scripts/sous/confex.sh",
+    "import-data": "./scripts/sous/import-data.sh",
+    "rebuild": "./scripts/sous/rebuild.sh",
+    "local-data-bak": "./scripts/sous/local-data-bak.sh",
+    "publish": "semantic-release --tag-format '${version}'",
+    "publish-test": "semantic-release --tag-format '${version}' --dry-run --debug",
+    "postinstall": "patch-package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fourkitchens/sous-drupal-project.git"
+  },
+  "keywords": [
+    "sous"
+  ],
+  "author": "Four Kitchens",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@emulsify/cli": "^1.6.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.6",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "husky": "^4.2.5",
+    "patch-package": "^6.2.2",
+    "semantic-release": "^19.0.3"
+  }
+}

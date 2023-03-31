@@ -1,0 +1,23 @@
+uuid: 32e525ea-69f9-49fe-9819-75fd4225c338
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+third_party_settings:
+  crop:
+    image_field: field_media_image
+_core:
+  default_config_hash: 3xobH6ggQTAOK9F2oyo1G7xAoWC0rs4ELImzXUNrm2I
+id: image
+label: Image
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_image
+field_map:
+  name: name
+  mimetype: field_media_image
+  filesize: field_media_image

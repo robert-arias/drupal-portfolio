@@ -1,0 +1,27 @@
+uuid: 02755b12-7c7e-4f71-92cf-f7c62bc41998
+langcode: en
+status: true
+dependencies:
+  module:
+    - crop
+third_party_settings:
+  crop:
+    image_field: null
+_core:
+  default_config_hash: BRGScqKhi0dF3vGqHYwC6LnVaWKuEGC4E0I4vnvQ_X0
+id: video
+label: Video
+description: ''
+source: 'oembed:video'
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_oembed_video
+  thumbnails_directory: 'public://oembed_thumbnails'
+  providers:
+    - YouTube
+    - Vimeo
+field_map:
+  type: field_media_oembed_video
+  title: name
+  url: field_media_oembed_video

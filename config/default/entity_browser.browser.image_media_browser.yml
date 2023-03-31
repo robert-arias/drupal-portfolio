@@ -1,0 +1,55 @@
+uuid: 9cf9e2ca-e329-4c0d-8bb6-a61531470dda
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image
+    - views.view.media_entity_browsers
+  module:
+    - dropzonejs_eb_widget
+    - media
+    - views
+_core:
+  default_config_hash: BCojAEVBqv55njetz8l3IN7OyT3CxNuUZ8F8lT8qyeM
+name: image_media_browser
+label: 'Image Media Browser'
+display: modal
+display_configuration:
+  width: '850'
+  height: ''
+  link_text: 'Select Images'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  20fc087b-8189-4a24-9919-40ed4c12c6cc:
+    id: view
+    uuid: 20fc087b-8189-4a24-9919-40ed4c12c6cc
+    label: 'Image Library'
+    weight: 1
+    settings:
+      submit_text: 'Select Images'
+      auto_select: false
+      view: media_entity_browsers
+      view_display: image_media_browser
+  14a58274-0034-49ec-ac1f-d71a119dfb81:
+    id: dropzonejs_media_entity_inline_entity_form
+    uuid: 14a58274-0034-49ec-ac1f-d71a119dfb81
+    label: 'Upload Image'
+    weight: 2
+    settings:
+      submit_text: 'Save Image'
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop image files here to upload them'
+      max_filesize: 100M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: 1.0
+      resize_method: contain
+      thumbnail_method: contain
+      media_type: image
+      form_mode: default

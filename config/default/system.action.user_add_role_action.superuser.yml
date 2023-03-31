@@ -1,0 +1,16 @@
+uuid: 12afb8c6-3f73-4733-9b58-0a56d6dfd7b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.superuser
+  module:
+    - user
+_core:
+  default_config_hash: EQBVo0eCUEZ65g3zUV1iMHpJS6FL9d10glRyUvKsWMg
+id: user_add_role_action.superuser
+label: 'Add the superuser role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: superuser

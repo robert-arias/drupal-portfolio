@@ -1,0 +1,177 @@
+# Ignore non-custom parts of Drupal.
+web/core
+web/libraries
+web/modules/contrib
+web/modules/features
+web/profiles/contrib
+web/themes/contrib
+
+# Ignore Composer-managed dependencies.
+vendor/
+
+# Node modules.
+node_modules/
+
+# Ignore generated linting files
+/web/.eslintignore
+/web/.eslintrc
+
+# Local reference files.
+/reference/**/*
+!/reference/.gitkeep
+
+web/storybook
+
+# Remove me after sous install
+.drush-lock-update
+.gitattributes
+.phpunit.result.cache
+pantheon.upstream.yml
+web/.eslintrc.json
+web/INSTALL.txt
+web/README.txt
+web/example.gitignore
+web/.csslintrc
+web/.editorconfig
+web/.eslintignore
+web/.eslintrc
+web/.htaccess
+web/.ht.router.php
+web/.gitignore
+web/autoload.php
+web/index.php
+web/robots.txt
+web/sites/default/default.services.pantheon.preproduction.yml
+web/sites/default/default.services.yml
+web/sites/default/default.settings.php
+web/sites/default/settings.pantheon.php
+web/sites/development.services.yml
+web/sites/example.settings.local.php
+web/sites/example.sites.php
+web/sites/README.txt
+web/update.php
+web/web.config
+
+# Add directories containing build assets below.
+# Keep all additions above the "cut" line.
+
+# This distinction is only important when using this
+# repository as a custom upstream. The .gitignore file
+# is not modified in the GitHub PR workflow.
+
+
+# :::::::::::::::::::::: cut ::::::::::::::::::::::
+
+###
+### Pantheon site .gitignore section
+###
+### Items below the "cut" line are still ignored on
+### the Pantheon site. Items above the "cut" line
+### are ignored in the GitHub repository, but committed
+### to the Pantheon repository.
+###
+
+
+# Ignore paths that contain user-generated content.
+web/sites/*/files
+web/sites/*/private
+files/*
+
+# Avoid accidental modification of pantheon.upstream.yml in sites
+# created from this upstream
+pantheon.upstream.yml
+
+# Pantheon commits a settings.php for environment-specific settings.
+# Place local settings in settings.local.php
+web/sites/*/settings.local.php
+web/sites/*/services*.yml
+!web/sites/*/services.pantheon.*.yml
+!web/sites/*/services.yml
+
+# Note that services.local.yml is not loaded by default. If you would like
+# to use this file add the following to your settings.local.php file:
+#   $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
+web/sites/*/services.local.yml
+
+# ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
+web/sites/default/**/files
+web/sites/default/**/private
+web/sites/default/config
+
+# Ignore SimpleTest multi-site environment.
+web/sites/simpletest
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.bz2
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.tgz
+
+# Logs and databases #
+######################
+*.log
+*.sql
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon[\r]
+
+Thumbs.db
+._*
+
+# Vim generated files #
+######################
+*.un~
+
+# SASS #
+##########
+.sass-cache
+
+# Things in the core directory that Drupal 8 commits in the repository.
+!core/**/*.gz
+
+# VS Code generated files/folders
+.vscode
+.vscode-insdiders
+.history
+
+# PHP Storm
+.idea
+
+# Lando app
+app
+mods_disabled.local
+.editorconfig
+.gitattributes
+.csslintrc
+.eslintignore
+.eslintrc.json
+.ht.router.php
+.htaccess
+INSTALL.txt
+README.txt
+autoload.php
+example.gitignore
+index.php
+robots.txt
+update.php
+web.config
+.lando.local.yml
+
+# Local configurations
+behat.local.yml
+/results/
+
+# Ignore symlinks
+modules/*
+themes/*
+settings/*

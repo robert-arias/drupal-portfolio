@@ -1,0 +1,16 @@
+uuid: 010abab1-8525-46f4-b7f1-bcc89f621847
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.superuser
+  module:
+    - user
+_core:
+  default_config_hash: 114VHR6isHeQ5bSSbqofEmf_k-NU0JELHb8ECjC185s
+id: user_remove_role_action.superuser
+label: 'Remove the superuser role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: superuser

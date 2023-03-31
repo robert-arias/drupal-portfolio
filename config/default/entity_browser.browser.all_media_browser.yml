@@ -1,0 +1,86 @@
+uuid: c87d3d32-8b6e-478f-9308-5fe7f43e770f
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.file
+    - media.type.image
+    - views.view.media_entity_browsers
+  module:
+    - dropzonejs_eb_widget
+    - entity_browser_entity_form
+    - media
+    - views
+_core:
+  default_config_hash: xZ8WQSsIJsjFTa11wdAhCHdJp-UQKgx8A-N00CmPCfw
+name: all_media_browser
+label: 'All Media Browser'
+display: modal
+display_configuration:
+  width: '850'
+  height: ''
+  link_text: 'Select Media'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  3004c61c-4650-44c6-bce4-765778c7dfdd:
+    id: view
+    uuid: 3004c61c-4650-44c6-bce4-765778c7dfdd
+    label: 'Media Library'
+    weight: 1
+    settings:
+      submit_text: 'Select Media'
+      auto_select: false
+      view: media_entity_browsers
+      view_display: all_media_browser
+  8eaa9cb1-1c69-419c-bbb5-97b961da02a5:
+    id: dropzonejs_media_entity_inline_entity_form
+    uuid: 8eaa9cb1-1c69-419c-bbb5-97b961da02a5
+    label: 'Upload Image'
+    weight: 2
+    settings:
+      submit_text: 'Save Image'
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop image files here to upload them'
+      max_filesize: 100M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: 1.0
+      resize_method: contain
+      thumbnail_method: contain
+      media_type: image
+      form_mode: default
+  0fcadd62-7056-4865-a7b2-6940075f14af:
+    id: entity_form
+    uuid: 0fcadd62-7056-4865-a7b2-6940075f14af
+    label: 'Add New Video'
+    weight: 3
+    settings:
+      submit_text: 'Save Video'
+      entity_type: media
+      bundle: video
+      form_mode: default
+  05a2675a-097a-4ed5-8cbc-5243ca8ec809:
+    id: dropzonejs_media_entity_inline_entity_form
+    uuid: 05a2675a-097a-4ed5-8cbc-5243ca8ec809
+    label: 'Upload File'
+    weight: 4
+    settings:
+      submit_text: 'Select Files'
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop files here to upload them'
+      max_filesize: 100M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: 1.0
+      resize_method: contain
+      thumbnail_method: contain
+      media_type: file
+      form_mode: default

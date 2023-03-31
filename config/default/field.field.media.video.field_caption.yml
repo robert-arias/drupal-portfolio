@@ -1,0 +1,21 @@
+uuid: a1e8609f-bd90-4f1a-8066-5c710ccea6a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_caption
+    - media.type.video
+_core:
+  default_config_hash: OI25rv3KWGBYNmuHnwP3sX0XNtdNR7qj9VRjm0aQ-ao
+id: media.video.field_caption
+field_name: field_caption
+entity_type: media
+bundle: video
+label: Caption
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

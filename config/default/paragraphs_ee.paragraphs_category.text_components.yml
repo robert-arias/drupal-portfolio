@@ -1,0 +1,10 @@
+uuid: 5c6d0257-ee5d-4b86-bf04-3645b048a53f
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: mJCmLZ8DjmKnJffPHOtWS-8uDOHpdXroFzDzvCmaomQ
+id: text_components
+label: 'Text Components'
+description: ''
+weight: -10

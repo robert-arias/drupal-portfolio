@@ -1,0 +1,62 @@
+uuid: 3cfd3824-5487-4f13-b6bd-acf5699534c5
+langcode: en
+status: true
+dependencies:
+  module:
+    - blazy
+    - improve_line_breaks_filter
+_core:
+  default_config_hash: F86WqjU3ru_gch-LQM2c8yl46CtSWvvuwSXXaYk8E7Q
+name: 'Restricted HTML'
+format: restricted_html
+weight: 1
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <h2> <h3> <h4> <h5> <h6> <a hreflang alt href> <strong> <em>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: 0
+    settings:
+      filter_url_length: 72
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }
+  improve_line_breaks_filter:
+    id: improve_line_breaks_filter
+    provider: improve_line_breaks_filter
+    status: true
+    weight: 50
+    settings:
+      remove_empty_paragraphs: '1'
+  blazy_filter:
+    id: blazy_filter
+    provider: blazy
+    status: false
+    weight: 3
+    settings:
+      media_switch: ''
+      hybrid_style: ''
+      box_style: ''
+      box_caption: ''
+      filter_tags:
+        img: img
+        iframe: iframe
+      use_data_uri: '0'
