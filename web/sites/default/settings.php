@@ -9,6 +9,10 @@
 global $settings;
 global $base_url;
 
+/**
+ * Include pantheon settings first to then override its config.
+ */
+include __DIR__ . "/settings.pantheon.php";
 
 $settings['config_sync_directory'] = '../config/default';
 
