@@ -221,14 +221,15 @@ jobs:
             else
               ./vendor/fourkitchens/project_ci/scripts/build/php
             fi
-      - run:
-          name: run theme build step
-          command: |
-            if [ -f "./.circleci/scripts/build/theme" ]; then
-              ./.circleci/scripts/build/theme
-            else
-              ./vendor/fourkitchens/project_ci/scripts/build/theme
-            fi
+      # We don't currently have a theme. Uncomment if needed.
+      # - run:
+      #     name: run theme build step
+      #     command: |
+      #       if [ -f "./.circleci/scripts/build/theme" ]; then
+      #         ./.circleci/scripts/build/theme
+      #       else
+      #         ./vendor/fourkitchens/project_ci/scripts/build/theme
+      #       fi
       - persist_to_workspace:
           root: .
           paths: *persisting_dirs
