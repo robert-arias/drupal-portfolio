@@ -28,3 +28,10 @@ $settings['skip_permissions_hardening'] = TRUE;
 $config['config_split.config_split.lando']['status'] = TRUE;
 $config['environment_indicator.indicator']['bg_color'] = '#337355';
 $config['environment_indicator.indicator']['fg_color'] = '#337355';
+
+$settings['trusted_host_patterns'] = [
+  '^'.getenv('LANDO_APP_NAME').'\.lndo\.site$',      # lando proxy access
+  '^localhost$',                                     # localhost access
+  '^'.getenv('LANDO_APP_NAME').'\.localtunnel\.me$', # lando share access
+  '^192\.168\.1\.100$'                               # LAN IP access
+];
