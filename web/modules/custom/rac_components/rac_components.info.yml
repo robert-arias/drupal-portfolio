@@ -1,0 +1,8 @@
+name: RAC Components
+type: module
+description: Enhacements for the site's components.
+package: RAC
+core_version_requirement: ^9 || ^10
+dependencies:
+  - layout_builder_base:layout_builder_base_library
+  - layout_builder_base:layout_builder_base
