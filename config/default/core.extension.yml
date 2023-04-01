@@ -44,6 +44,7 @@ module:
   jquery_ui: 0
   jquery_ui_draggable: 0
   layout_builder: 0
+  layout_builder_base: 0
   layout_builder_browser: 0
   layout_builder_iframe_modal: 0
   layout_builder_operation_link: 0
