@@ -1,8 +1,5 @@
 {
   "patches": {
-    "drupal/layout_builder_browser": {
-      "#3297496: D10 compatible": "https://git.drupalcode.org/project/layout_builder_browser/-/merge_requests/11.diff"
-    },
     "drupal/entity_embed": {
       "#3287235: D10 compatible": "https://git.drupalcode.org/project/entity_embed/-/merge_requests/9.diff"
     }
