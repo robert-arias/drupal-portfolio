@@ -36,7 +36,6 @@ module:
   filter: 0
   focal_point: 0
   gin_toolbar: 0
-  google_tag: 0
   image: 0
   improve_line_breaks_filter: 0
   inline_entity_form: 0
