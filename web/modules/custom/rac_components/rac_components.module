@@ -4,3 +4,17 @@
  * @file
  * Primary module hooks for RAC Components module.
  */
+
+/**
+ * Implements hook_plugin_filter_TYPE__CONSUMER_alter().
+ */
+function rac_components_plugin_filter_layout__layout_builder_alter(array &$definitions, array $extra) {
+  // To simplify the layout builder interface, we are hiding the default layout
+  // builder sections that come with Drupal.
+  // Instead, we are using the 'Layout Builder Base Library' to display more
+  // complex layout builder sections that are better suited to our needs.
+  unset($definitions['layout_onecol']);
+  unset($definitions['layout_twocol_section']);
+  unset($definitions['layout_threecol_section']);
+  unset($definitions['layout_fourcol_section']);
+}
