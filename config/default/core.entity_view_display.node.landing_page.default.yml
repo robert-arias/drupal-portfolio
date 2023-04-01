@@ -7,7 +7,6 @@ dependencies:
     - node.type.landing_page
   module:
     - layout_builder
-    - layout_discovery
     - user
 third_party_settings:
   layout_builder:
@@ -15,7 +14,7 @@ third_party_settings:
     allow_custom: true
     sections:
       -
-        layout_id: layout_onecol
+        layout_id: layout_builder_blank
         layout_settings:
           label: ''
         components: {  }
