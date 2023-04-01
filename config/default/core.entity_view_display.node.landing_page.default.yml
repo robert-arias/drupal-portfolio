@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.landing_page.layout_builder__layout
     - node.type.landing_page
   module:
     - layout_builder
@@ -17,17 +18,7 @@ third_party_settings:
         layout_id: layout_onecol
         layout_settings:
           label: ''
-        components:
-          a9e3fc49-40aa-41c8-bedd-cba2b3481b24:
-            uuid: a9e3fc49-40aa-41c8-bedd-cba2b3481b24
-            region: content
-            configuration:
-              id: 'extra_field_block:node:landing_page:links'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-            weight: 0
-            additional: {  }
+        components: {  }
         third_party_settings: {  }
 id: node.landing_page.default
 targetEntityType: node
