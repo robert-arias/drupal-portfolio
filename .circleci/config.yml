@@ -342,18 +342,18 @@ jobs:
   #
   # This usually will do things like create a change log and bump the version
   # on the source repository.
-  release:
-    <<: *defaults
-    steps:
-      - setup-project
-      - run:
-          name: Publish a Release
-          command: |
-            if [ -f "./.circleci/scripts/release" ]; then
-              ./.circleci/scripts/release
-            else
-              ./vendor/fourkitchens/project_ci/scripts/release
-            fi
+  # release:
+  #   <<: *defaults
+  #   steps:
+  #     - setup-project
+  #     - run:
+  #         name: Publish a Release
+  #         command: |
+  #           if [ -f "./.circleci/scripts/release" ]; then
+  #             ./.circleci/scripts/release
+  #           else
+  #             ./vendor/fourkitchens/project_ci/scripts/release
+  #           fi
 
 workflows:
   version: 2
@@ -404,14 +404,14 @@ workflows:
                 - 'main'
                 - 'master'
 
-      - release:
-          requires:
-          - deploy_to_pantheon
-          filters:
-            branches:
-              only:
-                - 'main'
-                - 'master'
+      # - release:
+      #     requires:
+      #     - deploy_to_pantheon
+      #     filters:
+      #       branches:
+      #         only:
+      #           - 'main'
+      #           - 'master'
   build-deploy-acquia:
     when:
       not:

@@ -65,7 +65,6 @@
         "drupal/taxonomy_manager": "^2.0.4",
         "drupal/token": "^1.9",
         "drupal/twig_tweak": "^3.2",
-        "drupal/upgrade_status": "^4.0",
         "drupal/views_ajax_history": "^1.6",
         "drush/drush": "^11.5",
         "emulsify-ds/emulsify-drupal": "^4.1",
