@@ -1,0 +1,13 @@
+diff --git a/src/Form/BlockForm.php b/src/Form/BlockForm.php
+index c8affc7..f5d9751 100644
+--- a/src/Form/BlockForm.php
++++ b/src/Form/BlockForm.php
+@@ -66,7 +66,7 @@ class BlockForm extends EntityForm {
+     $browser_block = $this->entity;
+ 
+     $block_id = $browser_block->block_id;
+-    $provider = isset($provider_options['Inline blocks']) ? 'Inline blocks' : '';
++    $provider = isset($provider_options['Inline blocks']) ? 'Inline blocks' : array_key_first($provider_options);
+     if ($block_id) {
+       $provider = $block_provider_map[$block_id];
+     }
