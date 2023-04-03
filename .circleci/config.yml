@@ -430,14 +430,14 @@ workflows:
                 - master
                 - develop
                 - /release-.*/
-      - release:
-          requires:
-          - deploy
-          filters:
-            branches:
-              only:
-                - 'main'
-                - 'master'
+      # - release:
+      #     requires:
+      #     - deploy
+      #     filters:
+      #       branches:
+      #         only:
+      #           - 'main'
+      #           - 'master'
 
 ###### Please do not change things in the commands without contributing back.
 node-install-parameters: &node-install-parameters
