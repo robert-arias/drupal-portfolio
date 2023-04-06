@@ -1,0 +1,10 @@
+uuid: 44b9105b-6240-4605-ba93-2b61d5e6b1aa
+langcode: en
+status: true
+dependencies: {  }
+id: cta
+label: Button
+icon_uuid: null
+icon_default: null
+description: 'Call to action paragraph'
+behavior_plugins: {  }

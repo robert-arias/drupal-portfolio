@@ -1,0 +1,21 @@
+uuid: 8078b811-f41c-4240-8337-ec57cadc3b4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.document.field_media
+    - paragraphs.paragraphs_type.document
+id: paragraph.document.default
+targetEntityType: paragraph
+bundle: document
+mode: default
+content:
+  field_media:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

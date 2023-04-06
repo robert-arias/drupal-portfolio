@@ -1,0 +1,8 @@
+uuid: 8a1e8d67-10ce-43db-baa8-6fed412dc953
+langcode: en
+status: true
+dependencies: {  }
+id: landing_content
+label: 'Landing Content'
+revision: 0
+description: 'The landing content to show as the welcoming component on a landing page'

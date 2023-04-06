@@ -1,0 +1,42 @@
+uuid: ff5b68f7-9017-466d-8337-1ef306ddcb7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.landing_content
+    - field.field.block_content.landing_content.field_buttons
+    - field.field.block_content.landing_content.field_text
+    - field.field.block_content.landing_content.field_title
+  module:
+    - entity_reference_revisions
+    - text
+id: block_content.landing_content.default
+targetEntityType: block_content
+bundle: landing_content
+mode: default
+content:
+  field_buttons:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

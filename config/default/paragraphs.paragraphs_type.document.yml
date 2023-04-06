@@ -1,4 +1,4 @@
-uuid: 92c6f078-548a-4fde-8088-343838aa4582
+uuid: 47bfbd75-5dea-407f-8845-aec75da23227
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,9 @@ dependencies:
 third_party_settings:
   paragraphs_ee:
     paragraphs_categories: {  }
-_core:
-  default_config_hash: Zj0W_kWvgwbI_6SvpsZz60MJV05WnnQsd5B3mp3sX6Y
-id: image
-label: Image
+id: document
+label: Document
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'The document paragraph'
 behavior_plugins: {  }

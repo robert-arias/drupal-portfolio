@@ -1,4 +1,4 @@
-uuid: 92c6f078-548a-4fde-8088-343838aa4582
+uuid: f2dc51e5-ca80-4ebe-9b91-911c9fb54fe0
 langcode: en
 status: true
 dependencies:
@@ -7,11 +7,9 @@ dependencies:
 third_party_settings:
   paragraphs_ee:
     paragraphs_categories: {  }
-_core:
-  default_config_hash: Zj0W_kWvgwbI_6SvpsZz60MJV05WnnQsd5B3mp3sX6Y
-id: image
-label: Image
+id: link
+label: Link
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'The link paragraph'
 behavior_plugins: {  }

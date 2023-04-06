@@ -1,0 +1,53 @@
+uuid: d93288f7-a2f6-4dca-b947-678689bb4cc0
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.landing_content
+    - field.field.block_content.landing_content.field_buttons
+    - field.field.block_content.landing_content.field_text
+    - field.field.block_content.landing_content.field_title
+  module:
+    - paragraphs
+    - text
+id: block_content.landing_content.default
+targetEntityType: block_content
+bundle: landing_content
+mode: default
+content:
+  field_buttons:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_text:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  info: true

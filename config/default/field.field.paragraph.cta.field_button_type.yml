@@ -1,0 +1,23 @@
+uuid: dc1dada9-ccd6-4306-9be4-e9e9d829e43d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_button_type
+    - paragraphs.paragraphs_type.cta
+  module:
+    - options
+id: paragraph.cta.field_button_type
+field_name: field_button_type
+entity_type: paragraph
+bundle: cta
+label: 'Button Type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: primary
+default_value_callback: ''
+settings: {  }
+field_type: list_string

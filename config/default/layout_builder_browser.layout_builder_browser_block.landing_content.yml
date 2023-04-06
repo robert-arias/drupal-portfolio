@@ -1,0 +1,11 @@
+uuid: eecca865-e7a3-4bae-8322-833a2d7abef4
+langcode: en
+status: true
+dependencies: {  }
+id: landing_content
+block_id: 'inline_block:landing_content'
+category: components
+label: 'Landing Content'
+image_path: ''
+image_alt: ''
+weight: -100

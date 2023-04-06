@@ -1,10 +1,10 @@
-uuid: 27bc7acf-d6c2-4075-b756-00213db6d608
+uuid: 9453fe6c-fd4b-4e10-a583-45deef3376d7
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_text
-    - paragraphs.paragraphs_type.text
+    - block_content.type.landing_content
+    - field.storage.block_content.field_text
   module:
     - allowed_formats
     - text
@@ -12,15 +12,13 @@ third_party_settings:
   allowed_formats:
     allowed_formats:
       - basic_html
-_core:
-  default_config_hash: MnTggw-mZ_uaJhJ3ilNv0JVWoQK3f9DKb17-1Re7GJI
-id: paragraph.text.field_text
+id: block_content.landing_content.field_text
 field_name: field_text
-entity_type: paragraph
-bundle: text
+entity_type: block_content
+bundle: landing_content
 label: Text
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
