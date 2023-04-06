@@ -17,8 +17,8 @@ top_padding: ''
 bottom_padding: ''
 left_padding: ''
 right_padding: ''
-equal_top_bottom_paddings: layout--top-bottom-padding--big
-equal_left_right_paddings: layout--left-right-padding--small
+equal_top_bottom_paddings: ''
+equal_left_right_paddings: ''
 height: ''
 container: layout--container--none
 content_container: layout--content-container--default
