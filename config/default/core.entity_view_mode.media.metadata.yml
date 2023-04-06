@@ -1,0 +1,10 @@
+uuid: ec589ea7-ea2c-44d6-87e2-f50edab2d7e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.metadata
+label: Metadata
+targetEntityType: media
+cache: true
