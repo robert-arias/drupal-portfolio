@@ -5,6 +5,8 @@
  * Primary module hooks for RAC Components module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_plugin_filter_TYPE__CONSUMER_alter().
  */
@@ -17,4 +19,22 @@ function rac_components_plugin_filter_layout__layout_builder_alter(array &$defin
   unset($definitions['layout_twocol_section']);
   unset($definitions['layout_threecol_section']);
   unset($definitions['layout_fourcol_section']);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function rac_components_form_layout_builder_configure_block_alter(array &$form, FormStateInterface $form_state, string $form_id) {
+  // Hide block default values such as label and whether to show the block's
+  // title when adding a block in layout builder.
+  $form['settings']['label_display']['#access'] = FALSE;
+  $form['settings']['label_display']['#default_value'] = FALSE;
+  $form['settings']['label']['#access'] = FALSE;
+  if (!isset($form['settings']['label']['#default_value'])) {
+    // Generate a randomish value for the required title value.
+    $block_type_label = $form['settings']['block_form']['#block']->type->entity->label();
+    $current_user_username = \Drupal::currentUser()->getAccountName();
+    $timestamp = time();
+    $form['settings']['label']['#default_value'] = "{$block_type_label} {$current_user_username} {$timestamp}";
+  }
 }
