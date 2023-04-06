@@ -4,7 +4,8 @@
       "#3287235: D10 compatible": "https://git.drupalcode.org/project/entity_embed/-/merge_requests/9.diff"
     },
     "drupal/layout_builder_base": {
-      "D10 compatible": "patches/layout_builder_base_library-d10-compatibility.patch"
+      "D10 compatible": "patches/layout_builder_base_library-d10-compatibility.patch",
+      "Validate undefined key array": "patches/layout_builder_base_library-validate-issue.patch"
     },
     "drupal/layout_builder_browser": {
       "#3342348: PHP Type Error": "patches/layout_builder_browser-php-error-3342348.patch"
