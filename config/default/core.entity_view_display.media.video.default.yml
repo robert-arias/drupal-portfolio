@@ -4,14 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.media.video.field_caption
-    - field.field.media.video.field_copyright
-    - field.field.media.video.field_description
     - field.field.media.video.field_media_oembed_video
-    - field.field.media.video.field_tags
-    - field.field.media.video.field_transcript
     - media.type.video
   module:
-    - link
     - media
 _core:
   default_config_hash: dVYxmlCUp4bUoy9TE5jwbkxiUQPw2sBuiiJK796CMOk
@@ -27,14 +22,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_copyright:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_media_oembed_video:
     type: oembed
     label: hidden
@@ -44,22 +31,8 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_transcript:
-    type: link
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 2
-    region: content
 hidden:
   created: true
-  field_description: true
-  field_tags: true
   name: true
   thumbnail: true
   uid: true

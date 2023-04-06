@@ -7,12 +7,9 @@ dependencies:
     - media.type.file
     - media.type.image
     - media.type.video
-    - taxonomy.vocabulary.media_tags
-    - taxonomy.vocabulary.tags
   module:
     - entity_browser
     - media
-    - taxonomy
     - user
 _core:
   default_config_hash: WHU45h0VLeR38zPOEZBmiVkq8Z6ypZ6_WzyhQODVSpc
@@ -349,52 +346,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_tags_target_id:
-          id: field_tags_target_id
-          table: media__field_tags
-          field: field_tags_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tags_target_id_op
-            label: Tags
-            description: ''
-            use_operator: false
-            operator: field_tags_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_tags_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: tags
-          type: textfield
-          hierarchy: false
-          limit: true
-          error_message: true
       style:
         type: grid
         options:
@@ -432,13 +383,13 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
-        - 'config:core.entity_view_display.media.image.default'
-        - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.file.default'
         - 'config:core.entity_view_display.media.file.preview'
+        - 'config:core.entity_view_display.media.image.default'
+        - 'config:core.entity_view_display.media.image.metadata'
+        - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.video.default'
         - 'config:core.entity_view_display.media.video.preview'
   all_media_browser:
@@ -447,161 +398,9 @@ display:
     display_plugin: entity_browser
     position: 1
     display_options:
-      filters:
-        status:
-          id: status
-          table: media_field_data
-          field: status
-          entity_type: media
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        bundle:
-          id: bundle
-          table: media_field_data
-          field: bundle
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: media
-          entity_field: bundle
-          plugin_id: bundle
-          operator: in
-          value:
-            all: all
-            file: file
-            image: image
-            video: video
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        name:
-          id: name
-          table: media_field_data
-          field: name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: media
-          entity_field: name
-          plugin_id: string
-          operator: word
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: name_op
-            label: 'Search by Name'
-            description: ''
-            use_operator: false
-            operator: name_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: name
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        field_tags_target_id:
-          id: field_tags_target_id
-          table: media__field_tags
-          field: field_tags_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tags_target_id_op
-            label: Tags
-            description: ''
-            use_operator: false
-            operator: field_tags_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_tags_target_id
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              superuser: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: true
-          vid: media_tags
-          type: textfield
-          hierarchy: false
-          limit: true
-          error_message: true
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
       defaults:
-        filters: false
-        filter_groups: false
+        filters: true
+        filter_groups: true
       display_description: ''
       display_extenders: {  }
     cache_metadata:
@@ -611,12 +410,12 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:core.entity_view_display.media.file.default'
         - 'config:core.entity_view_display.media.file.preview'
         - 'config:core.entity_view_display.media.image.default'
+        - 'config:core.entity_view_display.media.image.metadata'
         - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.video.default'
         - 'config:core.entity_view_display.media.video.preview'
@@ -724,52 +523,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_tags_target_id:
-          id: field_tags_target_id
-          table: media__field_tags
-          field: field_tags_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tags_target_id_op
-            label: Tags
-            description: ''
-            use_operator: false
-            operator: field_tags_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_tags_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: tags
-          type: textfield
-          hierarchy: false
-          limit: true
-          error_message: true
       filter_groups:
         operator: AND
         groups:
@@ -786,12 +539,12 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:core.entity_view_display.media.file.default'
         - 'config:core.entity_view_display.media.file.preview'
         - 'config:core.entity_view_display.media.image.default'
+        - 'config:core.entity_view_display.media.image.metadata'
         - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.video.default'
         - 'config:core.entity_view_display.media.video.preview'
@@ -810,12 +563,12 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:core.entity_view_display.media.file.default'
         - 'config:core.entity_view_display.media.file.preview'
         - 'config:core.entity_view_display.media.image.default'
+        - 'config:core.entity_view_display.media.image.metadata'
         - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.video.default'
         - 'config:core.entity_view_display.media.video.preview'
@@ -924,52 +677,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_tags_target_id:
-          id: field_tags_target_id
-          table: media__field_tags
-          field: field_tags_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tags_target_id_op
-            label: Tags
-            description: ''
-            use_operator: false
-            operator: field_tags_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_tags_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: tags
-          type: textfield
-          hierarchy: false
-          limit: true
-          error_message: true
       filter_groups:
         operator: AND
         groups:
@@ -986,12 +693,12 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:core.entity_view_display.media.file.default'
         - 'config:core.entity_view_display.media.file.preview'
         - 'config:core.entity_view_display.media.image.default'
+        - 'config:core.entity_view_display.media.image.metadata'
         - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.video.default'
         - 'config:core.entity_view_display.media.video.preview'
@@ -1099,52 +806,6 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_tags_target_id:
-          id: field_tags_target_id
-          table: media__field_tags
-          field: field_tags_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tags_target_id_op
-            label: Tags
-            description: ''
-            use_operator: false
-            operator: field_tags_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_tags_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: tags
-          type: textfield
-          hierarchy: false
-          limit: true
-          error_message: true
       filter_groups:
         operator: AND
         groups:
@@ -1161,12 +822,12 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - user.permissions
       tags:
         - 'config:core.entity_view_display.media.file.default'
         - 'config:core.entity_view_display.media.file.preview'
         - 'config:core.entity_view_display.media.image.default'
+        - 'config:core.entity_view_display.media.image.metadata'
         - 'config:core.entity_view_display.media.image.preview'
         - 'config:core.entity_view_display.media.video.default'
         - 'config:core.entity_view_display.media.video.preview'
