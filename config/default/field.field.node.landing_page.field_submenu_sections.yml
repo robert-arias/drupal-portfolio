@@ -1,0 +1,23 @@
+uuid: f6022cc2-2049-42d0-ba09-aa3032a398c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_submenu_sections
+    - node.type.landing_page
+id: node.landing_page.field_submenu_sections
+field_name: field_submenu_sections
+entity_type: node
+bundle: landing_page
+label: 'Create sub-menu from sections'
+description: "Whether you want to create a menu from the sections you've added in the layout.\r\nThe menu items will be the sections' label."
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
