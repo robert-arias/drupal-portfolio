@@ -10,7 +10,7 @@ third_party_settings:
     parent: ''
 name: 'Landing Page'
 type: landing_page
-description: ''
+description: 'Content type to create flexible landing pages'
 help: ''
 new_revision: false
 preview_mode: 0
