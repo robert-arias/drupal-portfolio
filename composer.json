@@ -66,6 +66,7 @@
         "drupal/token": "^1.9",
         "drupal/twig_tweak": "^3.2",
         "drupal/views_ajax_history": "^1.6",
+        "drupal/yearonly": "^9.1",
         "drush/drush": "^11.5",
         "emulsify-ds/emulsify-drupal": "^4.1",
         "fourkitchens/project_ci": "^0.4.1",
