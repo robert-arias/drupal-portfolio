@@ -1,0 +1,24 @@
+uuid: 201120e9-34d5-4985-a6cc-e8614ae99408
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.education_timeline
+    - field.field.block_content.education_timeline.field_education
+  module:
+    - entity_reference_revisions
+id: block_content.education_timeline.default
+targetEntityType: block_content
+bundle: education_timeline
+mode: default
+content:
+  field_education:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

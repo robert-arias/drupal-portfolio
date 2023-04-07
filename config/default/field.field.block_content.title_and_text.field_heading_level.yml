@@ -1,0 +1,23 @@
+uuid: b21ea09f-1ded-4174-b47e-9238d7c69ca0
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.title_and_text
+    - field.storage.block_content.field_heading_level
+  module:
+    - options
+id: block_content.title_and_text.field_heading_level
+field_name: field_heading_level
+entity_type: block_content
+bundle: title_and_text
+label: 'Heading level'
+description: 'The heading level to be used for the title'
+required: true
+translatable: false
+default_value:
+  -
+    value: h2
+default_value_callback: ''
+settings: {  }
+field_type: list_string

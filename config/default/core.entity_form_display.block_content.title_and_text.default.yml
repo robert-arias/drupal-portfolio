@@ -1,0 +1,40 @@
+uuid: 1c192658-4972-4972-8f72-48711a590f81
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.title_and_text
+    - field.field.block_content.title_and_text.field_heading_level
+    - field.field.block_content.title_and_text.field_text
+    - field.field.block_content.title_and_text.field_title
+  module:
+    - text
+id: block_content.title_and_text.default
+targetEntityType: block_content
+bundle: title_and_text
+mode: default
+content:
+  field_heading_level:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_text:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  info: true

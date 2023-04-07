@@ -1,0 +1,8 @@
+uuid: e575d802-3ba3-46a8-90af-a2d502627329
+langcode: en
+status: true
+dependencies: {  }
+id: title_and_text
+label: 'Title and text'
+revision: 0
+description: 'Basic block to show a title and a description'

@@ -1,0 +1,10 @@
+uuid: aab8b14d-711c-4589-b279-19038df77fcc
+langcode: en
+status: true
+dependencies: {  }
+id: education_timeline
+label: 'Education timeline'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

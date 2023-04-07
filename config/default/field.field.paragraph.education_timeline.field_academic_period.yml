@@ -1,0 +1,21 @@
+uuid: 28fc1cb1-be13-44ec-a135-f0b2c7f70125
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_academic_period
+    - paragraphs.paragraphs_type.education_timeline
+  module:
+    - datetime_range
+id: paragraph.education_timeline.field_academic_period
+field_name: field_academic_period
+entity_type: paragraph
+bundle: education_timeline
+label: 'Academic period'
+description: "The time frame in which you were actively engaged in studying and specializing in this particular major. <br>\r\nIf you only want to show the year, you can later format the field to only display the year."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

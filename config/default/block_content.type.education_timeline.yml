@@ -1,0 +1,8 @@
+uuid: d25780a0-9695-428f-870f-e26944f6b7c4
+langcode: en
+status: true
+dependencies: {  }
+id: education_timeline
+label: 'Education timeline'
+revision: 0
+description: 'A timeline of the education you have majored in'
