@@ -1,0 +1,49 @@
+diff --git a/core/lib/Drupal/Core/Block/BlockPluginInterface.php b/core/lib/Drupal/Core/Block/BlockPluginInterface.php
+index e4b330517b..f00baf6bb4 100644
+--- a/core/lib/Drupal/Core/Block/BlockPluginInterface.php
++++ b/core/lib/Drupal/Core/Block/BlockPluginInterface.php
+@@ -149,8 +149,8 @@ public function blockSubmit($form, FormStateInterface $form_state);
+    * is only responsible for providing a baseline suggestion; calling code is
+    * responsible for ensuring whatever uniqueness is required for the use case.
+    *
+-   * @return string
+-   *   The suggested machine name.
++   * @return string|null
++   *   The suggested machine name or NULL if not applicable.
+    */
+   public function getMachineNameSuggestion();
+ 
+diff --git a/core/lib/Drupal/Core/Block/BlockPluginTrait.php b/core/lib/Drupal/Core/Block/BlockPluginTrait.php
+index acb850ed01..f542078fa1 100644
+--- a/core/lib/Drupal/Core/Block/BlockPluginTrait.php
++++ b/core/lib/Drupal/Core/Block/BlockPluginTrait.php
+@@ -246,6 +246,9 @@ public function blockSubmit($form, FormStateInterface $form_state) {
+    */
+   public function getMachineNameSuggestion() {
+     $definition = $this->getPluginDefinition();
++    if (!isset($definition['admin_label'])) {
++      return NULL;
++    }
+     $admin_label = $definition['admin_label'];
+ 
+     // @todo This is basically the same as what is done in
+diff --git a/core/modules/block/src/BlockForm.php b/core/modules/block/src/BlockForm.php
+index 902c6827ca..f33559608e 100644
+--- a/core/modules/block/src/BlockForm.php
++++ b/core/modules/block/src/BlockForm.php
+@@ -382,11 +382,14 @@ protected function submitVisibility(array $form, FormStateInterface $form_state)
+    * @param \Drupal\block\BlockInterface $block
+    *   The block entity.
+    *
+-   * @return string
++   * @return string|null
+    *   Returns the unique name.
+    */
+   public function getUniqueMachineName(BlockInterface $block) {
+     $suggestion = $block->getPlugin()->getMachineNameSuggestion();
++    if (!$suggestion) {
++      return NULL;
++    }
+ 
+     // Get all the blocks which starts with the suggested machine name.
+     $query = $this->storage->getQuery();
