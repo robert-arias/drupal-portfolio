@@ -1,0 +1,31 @@
+# @todo: in .graphql just create the routes query, and in .base, .extension go by node, pagraphq, block, and so on.
+
+########################################
+# Schema.
+########################################
+
+schema {
+  query: Query
+}
+
+########################################
+# Types.
+########################################
+
+#
+# Query.
+#
+
+type Query {
+  landingPage(id: Int!): NodeLandingPage
+  # articles(
+  #   offset: Int = 0
+  #   limit: Int = 10
+  # ): ArticleConnection!
+}
+
+type NodeLandingPage {
+  id: Int!
+  title: String!
+  author: String
+}

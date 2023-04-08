@@ -1,0 +1,16 @@
+uuid: f7b0765e-8e2e-45fb-82e0-9d782c3c9acd
+langcode: en
+status: true
+dependencies: {  }
+name: main_server
+label: 'Main Server'
+endpoint: /graphql
+debug_flag: 0
+schema: rac_main
+caching: true
+batching: true
+disable_introspection: false
+query_depth: null
+query_complexity: null
+schema_configuration: {  }
+persisted_queries_settings: {  }
