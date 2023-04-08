@@ -1,15 +1,10 @@
 uuid: 47bfbd75-5dea-407f-8845-aec75da23227
 langcode: en
 status: true
-dependencies:
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories: {  }
+dependencies: {  }
 id: document
 label: Document
 icon_uuid: null
 icon_default: null
-description: 'The document paragraph'
+description: 'Document paragraph'
 behavior_plugins: {  }

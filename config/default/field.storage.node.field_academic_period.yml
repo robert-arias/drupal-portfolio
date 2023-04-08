@@ -1,13 +1,13 @@
-uuid: 92e45945-b3ad-443c-91cc-74933edbf609
+uuid: 62c65196-eb87-4dfb-936f-f3dfdc1319cf
 langcode: en
 status: true
 dependencies:
   module:
     - datetime_range
-    - paragraphs
-id: paragraph.field_academic_period
+    - node
+id: node.field_academic_period
 field_name: field_academic_period
-entity_type: paragraph
+entity_type: node
 type: daterange
 settings:
   datetime_type: date

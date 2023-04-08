@@ -1,52 +1,25 @@
-uuid: 15de2b18-9d86-4564-ae87-8fa66609d162
+uuid: d310a618-c647-440a-b47a-c36501b4ce56
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.education_timeline
     - field.storage.block_content.field_education
-    - paragraphs.paragraphs_type.education_timeline
-  module:
-    - entity_reference_revisions
 id: block_content.education_timeline.field_education
 field_name: field_education
 entity_type: block_content
 bundle: education_timeline
 label: Education
-description: 'Add the timeline of your education'
-required: false
+description: 'Choose the education items you want to show'
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:paragraph'
+  handler: views
   handler_settings:
-    target_bundles:
-      education_timeline: education_timeline
-    negate: 0
-    target_bundles_drag_drop:
-      cta:
-        weight: 9
-        enabled: false
-      document:
-        weight: 10
-        enabled: false
-      education_timeline:
-        weight: 11
-        enabled: true
-      image:
-        weight: 12
-        enabled: false
-      link:
-        weight: 13
-        enabled: false
-      text:
-        weight: 14
-        enabled: false
-      text_with_media:
-        weight: 15
-        enabled: false
-      video:
-        weight: 16
-        enabled: false
-field_type: entity_reference_revisions
+    view:
+      view_name: education_content
+      display_name: entity_reference_education_by_author
+      arguments: {  }
+field_type: entity_reference

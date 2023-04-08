@@ -1,0 +1,19 @@
+uuid: 097bfdd2-9023-49ab-ad2c-655690c22e43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_institution
+    - node.type.education
+id: node.education.field_institution
+field_name: field_institution
+entity_type: node
+bundle: education
+label: Institution
+description: 'The name of the institution you attended to get the degree'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

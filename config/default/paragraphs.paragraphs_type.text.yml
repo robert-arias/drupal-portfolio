@@ -1,17 +1,12 @@
 uuid: d13ca106-33c8-477e-ae83-18fbf23935ee
 langcode: en
 status: true
-dependencies:
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories: {  }
+dependencies: {  }
 _core:
   default_config_hash: I_fiVeTEoL9ytHipx1JAJoBTRNWXT_iir73K84XwpEw
 id: text
 label: Text
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Text paragraph'
 behavior_plugins: {  }

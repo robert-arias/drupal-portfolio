@@ -5,19 +5,16 @@ dependencies:
   config:
     - block_content.type.education_timeline
     - field.field.block_content.education_timeline.field_education
-  module:
-    - entity_reference_revisions
 id: block_content.education_timeline.default
 targetEntityType: block_content
 bundle: education_timeline
 mode: default
 content:
   field_education:
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_label
     label: above
     settings:
-      view_mode: default
-      link: ''
+      link: true
     third_party_settings: {  }
     weight: 0
     region: content

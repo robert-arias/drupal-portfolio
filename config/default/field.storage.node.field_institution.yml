@@ -1,12 +1,12 @@
-uuid: 23a34d2a-5361-4de1-a87b-ace6b8dac8f0
+uuid: eb48595f-011d-48af-b99e-3532da596ff4
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
-id: paragraph.field_university_name
-field_name: field_university_name
-entity_type: paragraph
+    - node
+id: node.field_institution
+field_name: field_institution
+entity_type: node
 type: string
 settings:
   max_length: 255

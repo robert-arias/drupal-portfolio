@@ -1,17 +1,12 @@
 uuid: 41142841-8b19-403c-aa2f-a0ea9da97348
 langcode: en
 status: true
-dependencies:
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories: {  }
+dependencies: {  }
 _core:
   default_config_hash: IxNUoOilC17sLFPYXCxDd9afXwztQOXlvLbQelNlUVk
 id: text_with_media
 label: 'Text with Media'
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Text with media paragraph'
 behavior_plugins: {  }

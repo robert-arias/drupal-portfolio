@@ -1,0 +1,34 @@
+uuid: b6e1cee3-b4e4-4642-a108-296a6c17cbc6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.education.body
+    - field.field.node.education.field_academic_period
+    - field.field.node.education.field_institution
+    - node.type.education
+  module:
+    - text
+    - user
+id: node.education.teaser
+targetEntityType: node
+bundle: education
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_academic_period: true
+  field_institution: true

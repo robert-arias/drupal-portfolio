@@ -1,17 +1,12 @@
 uuid: 92c6f078-548a-4fde-8088-343838aa4582
 langcode: en
 status: true
-dependencies:
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories: {  }
+dependencies: {  }
 _core:
   default_config_hash: Zj0W_kWvgwbI_6SvpsZz60MJV05WnnQsd5B3mp3sX6Y
 id: image
 label: Image
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Image paragraph'
 behavior_plugins: {  }

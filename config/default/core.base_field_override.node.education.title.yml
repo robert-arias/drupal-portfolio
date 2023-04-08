@@ -1,0 +1,18 @@
+uuid: 97092620-e187-40d4-8de8-fd36bfafe794
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.education
+id: node.education.title
+field_name: title
+entity_type: node
+bundle: education
+label: Degree
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

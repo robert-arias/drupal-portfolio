@@ -1,17 +1,12 @@
 uuid: eb3ec951-f705-425a-8499-cfbb0b4a3b35
 langcode: en
 status: true
-dependencies:
-  module:
-    - paragraphs_ee
-third_party_settings:
-  paragraphs_ee:
-    paragraphs_categories: {  }
+dependencies: {  }
 _core:
   default_config_hash: _roTsOc1n_k4bVJYUfYkBdIsVQ-Pq4AA1KvIagCRinI
 id: video
 label: Video
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Video paragraph'
 behavior_plugins: {  }
