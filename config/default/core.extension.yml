@@ -71,6 +71,7 @@ module:
   path: 0
   path_alias: 0
   rac_components: 0
+  rac_graphql: 0
   redirect: 0
   responsive_image: 0
   role_delegation: 0

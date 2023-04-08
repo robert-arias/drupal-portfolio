@@ -1,0 +1,7 @@
+name: RAC GraphQL
+type: module
+description: Provides functionality to query site through GraphQL.
+package: RAC
+core_version_requirement: ^9 || ^10
+dependencies:
+  - graphql
