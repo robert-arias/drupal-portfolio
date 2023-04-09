@@ -30,7 +30,7 @@ class MainSchema extends SdlSchemaPluginBase {
   }
 
   /**
-   * Add Query field resolvers.
+   * Add query field resolvers.
    *
    * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
    *   The resolver registry.
@@ -47,7 +47,7 @@ class MainSchema extends SdlSchemaPluginBase {
   }
 
   /**
-   * Add Query field resolvers.
+   * Add landing page field resolvers.
    *
    * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
    *   The resolver registry.
