@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.field.node.job.body
     - field.field.node.job.field_company
-    - field.field.node.job.field_job_period
+    - field.field.node.job.field_date_range
     - node.type.job
   module:
     - datetime_range
@@ -40,7 +40,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_job_period:
+  field_date_range:
     type: daterange_default
     weight: 2
     region: content

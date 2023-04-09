@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.education.body
-    - field.field.node.education.field_academic_period
+    - field.field.node.education.field_date_range
     - field.field.node.education.field_institution
     - node.type.education
   module:
@@ -32,7 +32,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_academic_period:
+  field_date_range:
     type: daterange_default
     weight: 2
     region: content

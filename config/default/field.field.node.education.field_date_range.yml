@@ -1,14 +1,14 @@
-uuid: 47a39130-c733-4fa9-8ad7-5d5321c88043
+uuid: 64316a5e-d944-4968-b4bc-daa276752b8e
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_academic_period
+    - field.storage.node.field_date_range
     - node.type.education
   module:
     - datetime_range
-id: node.education.field_academic_period
-field_name: field_academic_period
+id: node.education.field_date_range
+field_name: field_date_range
 entity_type: node
 bundle: education
 label: 'Academic period'

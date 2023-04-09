@@ -1,20 +1,20 @@
-uuid: acc97ebc-e03b-4517-9c0b-79b265038077
+uuid: c4054897-deb4-4b9f-a0c6-ea759d6fc600
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_job_period
+    - field.storage.node.field_date_range
     - node.type.job
   module:
     - datetime_range
-id: node.job.field_job_period
-field_name: field_job_period
+id: node.job.field_date_range
+field_name: field_date_range
 entity_type: node
 bundle: job
 label: 'Job period'
 description: "The timeframe during which you were employed at this job. <br>\r\nYou can later format how you want to display the date (i.e., only the month and year, only the year, etc.)"
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
