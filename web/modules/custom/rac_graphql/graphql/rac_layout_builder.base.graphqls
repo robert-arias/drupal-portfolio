@@ -1,0 +1,66 @@
+########################################
+# Layout Builder Types.
+########################################
+
+interface SectionInterface {
+  sectionId: String!
+  label: String,
+  background: BackgroundProperties
+  margin: MarginProperties
+  padding: PaddingProperties
+  container: ContainerProperties
+}
+
+type OneColumnSection {
+  sectionId: String!
+  label: String,
+  background: BackgroundProperties
+  margin: MarginProperties
+  padding: PaddingProperties
+  container: ContainerProperties
+}
+
+type MultipleColumnSection implements SectionInterface {
+  sectionId: String!
+  label: String,
+  grid: GridProperties
+  background: BackgroundProperties
+  margin: MarginProperties
+  padding: PaddingProperties
+  container: ContainerProperties
+}
+
+type GridProperties {
+  columnGap: String!
+  rowGap: String!
+  columnBreakpoint: String!
+  columnWidth: String!
+  alignItems: String!
+}
+
+type BackgroundProperties {
+  backgroundColor: String!
+}
+
+type MarginProperties {
+  top: String!
+  bottom: String!
+  left: String!
+  right: String!
+  topBottom: String!
+  leftRight: String!
+}
+
+type PaddingProperties {
+  top: String!
+  bottom: String!
+  left: String!
+  right: String!
+  topBottom: String!
+  leftRight: String!
+}
+
+type ContainerProperties {
+  width: String!
+  height: String!
+}
