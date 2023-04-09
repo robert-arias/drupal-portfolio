@@ -1,0 +1,5 @@
+name: RAC Nodes
+type: module
+description: Provides additional functionality for nodes
+package: RAC
+core_version_requirement: ^9 || ^10
