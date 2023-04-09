@@ -29,9 +29,8 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
 
     $this->addNodeInterfaceTypeResolver($registry);
 
-    $this->addQueryFields($registry, $builder);
+    $this->addNodeLandingPageFields($registry, $builder);
     $this->addNodeJobFields('NodeJob', $registry, $builder);
-    $this->addDateRangeFields('DateRange', $registry, $builder);
   }
 
   /**
@@ -49,28 +48,44 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
     $registry->addTypeResolver('NodeInterface', function ($value) {
       if ($value instanceof NodeInterface) {
         switch ($value->bundle()) {
+          case 'landing_page':
+            return 'NodeLandingPage';
+
           case 'job':
             return 'NodeJob';
         }
       }
+
       throw new Error('Could not resolve content type.');
     });
   }
 
   /**
-   * Add Query field resolvers.
+   * Add landing page field resolvers.
    *
    * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
    *   The resolver registry.
    * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
    *   The resolver builder.
    */
-  protected function addQueryFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver('Query', 'job',
-      $builder->produce('entity_load')
-        ->map('type', $builder->fromValue('node'))
-        ->map('bundles', $builder->fromValue(['job']))
-        ->map('id', $builder->fromArgument('id'))
+  protected function addNodeLandingPageFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver('NodeLandingPage', 'id',
+      $builder->produce('entity_id')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver('NodeLandingPage', 'title',
+      $builder->produce('entity_label')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver('NodeLandingPage', 'author',
+      $builder->compose(
+        $builder->produce('entity_owner')
+          ->map('entity', $builder->fromParent()),
+        $builder->produce('entity_label')
+          ->map('entity', $builder->fromParent())
+      )
     );
   }
 
@@ -127,30 +142,6 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
         $builder->produce('entity_label')
           ->map('entity', $builder->fromParent())
       )
-    );
-  }
-
-  /**
-   * Add job field resolvers.
-   *
-   * @param string $type_name
-   *   The GraphQL schema type name to resove fields to.
-   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
-   *   The resolver registry.
-   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
-   *   The resolver builder.
-   */
-  protected function addDateRangeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'start',
-      $builder->callback(function (array $date_range) {
-        return $date_range['start'];
-      })
-    );
-
-    $registry->addFieldResolver($type_name, 'end',
-      $builder->callback(function (array $date_range) {
-        return $date_range['end'];
-      })
     );
   }
 

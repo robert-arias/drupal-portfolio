@@ -25,8 +25,8 @@ class MainSchema extends SdlSchemaPluginBase {
     $builder = new ResolverBuilder();
     $registry = new ResolverRegistry();
 
-    $this->addQueryFields($registry, $builder);
-    $this->addNodeLandingPageFields($registry, $builder);
+    $this->addQueryFields('Query', $registry, $builder);
+    $this->addDateRangeFields('DateRange', $registry, $builder);
 
     return $registry;
   }
@@ -34,50 +34,50 @@ class MainSchema extends SdlSchemaPluginBase {
   /**
    * Add query field resolvers.
    *
+   * @param string $type_name
+   *   The GraphQL schema type name to resove fields to.
    * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
    *   The resolver registry.
    * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
    *   The resolver builder.
    */
-  protected function addQueryFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver('Query', 'landingPage',
+  protected function addQueryFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'landingPage',
       $builder->produce('entity_load')
         ->map('type', $builder->fromValue('node'))
         ->map('bundles', $builder->fromValue(['landing_page']))
         ->map('id', $builder->fromArgument('id'))
     );
+
+    $registry->addFieldResolver($type_name, 'job',
+      $builder->produce('entity_load')
+        ->map('type', $builder->fromValue('node'))
+        ->map('bundles', $builder->fromValue(['job']))
+        ->map('id', $builder->fromArgument('id'))
+    );
   }
 
   /**
-   * Add landing page field resolvers.
+   * Add job field resolvers.
    *
+   * @param string $type_name
+   *   The GraphQL schema type name to resove fields to.
    * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
    *   The resolver registry.
    * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
    *   The resolver builder.
    */
-  protected function addNodeLandingPageFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver('NodeLandingPage', 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
+  protected function addDateRangeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'start',
+      $builder->callback(function (array $date_range) {
+        return $date_range['start'];
+      })
     );
 
-    $registry->addFieldResolver('NodeLandingPage', 'title',
-      $builder->compose(
-        $builder->produce('entity_label')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('uppercase')
-          ->map('string', $builder->fromParent())
-      )
-    );
-
-    $registry->addFieldResolver('NodeLandingPage', 'author',
-      $builder->compose(
-        $builder->produce('entity_owner')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('entity_label')
-          ->map('entity', $builder->fromParent())
-      )
+    $registry->addFieldResolver($type_name, 'end',
+      $builder->callback(function (array $date_range) {
+        return $date_range['end'];
+      })
     );
   }
 

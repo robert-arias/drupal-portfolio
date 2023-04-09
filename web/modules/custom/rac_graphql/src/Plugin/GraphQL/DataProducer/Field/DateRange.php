@@ -69,7 +69,14 @@ class DateRange extends DataProducerPluginBase {
     // The field might be optional.
     $date_range = $entity->get($field_name)->first()?->getValue();
 
-    if ($date_format && $date_range) {
+    if (!$date_range) {
+      return [
+        'start' => NULL,
+        'end' => NULL,
+      ];
+    }
+
+    if ($date_format) {
       foreach ($date_range as &$date) {
         $immutableDate = new \DateTimeImmutable($date);
         $date = $immutableDate->format($date_format);
@@ -77,8 +84,8 @@ class DateRange extends DataProducerPluginBase {
     }
 
     return [
-      'start' => $date_range['value'] ?? NULL,
-      'end' => $date_range['end_value'] ?? NULL,
+      'start' => $date_range['value'],
+      'end' => $date_range['end_value'],
     ];
   }
 
