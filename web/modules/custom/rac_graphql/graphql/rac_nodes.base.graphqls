@@ -1,0 +1,23 @@
+########################################
+# Nodes.
+########################################
+
+interface NodeInterface {
+  id: ID!
+  title: String!
+}
+
+type NodeJob implements NodeInterface {
+  id: ID!
+  title: String!
+  jobTitle: String!
+  company: String!
+  jobPeriod: DateRange!
+  description: String!
+  author: String
+}
+
+type DateRange {
+  start: String
+  end: String
+}
