@@ -6,12 +6,14 @@ interface NodeInterface {
   id: ID!
   title: String!
   author: String
+  url: String!
 }
 
 type NodeLandingPage implements NodeInterface {
   id: ID!
   title: String!
   author: String
+  url: String!
 }
 
 type NodeJob implements NodeInterface {
@@ -22,6 +24,7 @@ type NodeJob implements NodeInterface {
   company: String!
   jobPeriod: DateRange!
   description: String!
+  url: String!
 }
 
 type NodeEducation implements NodeInterface {
