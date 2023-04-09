@@ -8,6 +8,8 @@ use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\graphql\Plugin\GraphQL\Schema\SdlSchemaPluginBase;
 
 /**
+ * The entry point to the main schema.
+ *
  * @Schema(
  *   id = "rac_main",
  *   name = @Translation("Main Schema"),

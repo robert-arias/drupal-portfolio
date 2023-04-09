@@ -49,7 +49,8 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
     $registry->addTypeResolver('NodeInterface', function ($value) {
       if ($value instanceof NodeInterface) {
         switch ($value->bundle()) {
-          case 'job': return 'NodeJob';
+          case 'job':
+            return 'NodeJob';
         }
       }
       throw new Error('Could not resolve content type.');
@@ -101,22 +102,22 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
 
     $registry->addFieldResolver($type_name, 'company',
       $builder->produce('property_path')
-      ->map('path', $builder->fromValue('field_company.value'))
-      ->map('value', $builder->fromParent())
-      ->map('type', $builder->fromValue('entity:node'))
+        ->map('path', $builder->fromValue('field_company.value'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:node'))
     );
 
     $registry->addFieldResolver($type_name, 'jobPeriod',
       $builder->produce('date_range')
-      ->map('entity', $builder->fromParent())
-      ->map('field_name', $builder->fromValue('field_job_period'))
+        ->map('entity', $builder->fromParent())
+        ->map('field_name', $builder->fromValue('field_job_period'))
     );
 
     $registry->addFieldResolver($type_name, 'description',
       $builder->produce('property_path')
-      ->map('path', $builder->fromValue('body.processed'))
-      ->map('value', $builder->fromParent())
-      ->map('type', $builder->fromValue('entity:node'))
+        ->map('path', $builder->fromValue('body.processed'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:node'))
     );
 
     $registry->addFieldResolver($type_name, 'author',
