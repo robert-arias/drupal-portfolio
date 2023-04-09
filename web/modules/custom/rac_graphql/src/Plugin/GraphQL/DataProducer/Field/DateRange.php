@@ -29,17 +29,17 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 class DateRange extends DataProducerPluginBase {
 
   /**
-   * Resolver.
+   * Resolves the start and end date of a date range field.
    *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   The entity node.
+   * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
+   *   The entity to get the value from.
    * @param \Drupal\Core\Cache\RefinableCacheableDependencyInterface $metadata
    *   The metadata object.
    *
-   * @return string
-   *   Array of metatags items.
+   * @return array
+   *   An array with the start and end date.
    */
-  public function resolve(FieldableEntityInterface $entity, string $field_name, RefinableCacheableDependencyInterface $metadata) {
+  public function resolve(FieldableEntityInterface $entity, string $field_name, RefinableCacheableDependencyInterface $metadata): array {
     if (!$entity->hasField($field_name)) {
       throw new \InvalidArgumentException(sprintf('The field "%s" does not exist on the %s entity', $field_name, $entity->bundle()));
     }
