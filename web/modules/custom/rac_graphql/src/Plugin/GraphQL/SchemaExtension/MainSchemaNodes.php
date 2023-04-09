@@ -5,8 +5,8 @@ namespace Drupal\rac_graphql\Plugin\GraphQL\SchemaExtension;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\node\NodeInterface;
+use Drupal\rac_graphql\GraphqlNodeBase;
 use GraphQL\Error\Error;
 
 /**
@@ -19,7 +19,7 @@ use GraphQL\Error\Error;
  *   schema = "rac_main"
  * )
  */
-class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
+class MainSchemaNodes extends GraphqlNodeBase {
 
   /**
    * {@inheritdoc}
@@ -75,24 +75,7 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
    *   The resolver builder.
    */
   protected function addNodeLandingPageFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $registry->addFieldResolver($type_name, 'title',
-      $builder->produce('entity_label')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $registry->addFieldResolver($type_name, 'author',
-      $builder->compose(
-        $builder->produce('entity_owner')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('entity_label')
-          ->map('entity', $builder->fromParent())
-      )
-    );
+    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
   }
 
   /**
@@ -106,15 +89,7 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
    *   The resolver builder.
    */
   protected function addNodeJobFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $registry->addFieldResolver($type_name, 'title',
-      $builder->produce('entity_label')
-        ->map('entity', $builder->fromParent())
-    );
+    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'jobTitle',
       $builder->produce('entity_label')
@@ -140,15 +115,6 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
         ->map('value', $builder->fromParent())
         ->map('type', $builder->fromValue('entity:node'))
     );
-
-    $registry->addFieldResolver($type_name, 'author',
-      $builder->compose(
-        $builder->produce('entity_owner')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('entity_label')
-          ->map('entity', $builder->fromParent())
-      )
-    );
   }
 
   /**
@@ -162,15 +128,7 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
    *   The resolver builder.
    */
   protected function addNodeEducationFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $registry->addFieldResolver($type_name, 'title',
-      $builder->produce('entity_label')
-        ->map('entity', $builder->fromParent())
-    );
+    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'degreeTitle',
       $builder->produce('entity_label')
@@ -195,24 +153,6 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
         ->map('path', $builder->fromValue('body.processed'))
         ->map('value', $builder->fromParent())
         ->map('type', $builder->fromValue('entity:node'))
-    );
-
-    $registry->addFieldResolver($type_name, 'author',
-      $builder->compose(
-        $builder->produce('entity_owner')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('entity_label')
-          ->map('entity', $builder->fromParent())
-      )
-    );
-
-    $registry->addFieldResolver($type_name, 'url',
-      $builder->compose(
-        $builder->produce('entity_url')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('url_path')
-          ->map('url', $builder->fromParent())
-      )
     );
   }
 
