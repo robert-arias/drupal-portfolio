@@ -48,8 +48,13 @@ class DateRange extends DataProducerPluginBase {
    * @param \Drupal\Core\Cache\RefinableCacheableDependencyInterface $metadata
    *   The cache metadata object.
    *
-   * @return array
-   *   An array containing the start and end dates of the field.
+   * @return array|null
+   *   An array containing the start and end dates of the field. NULL if the
+   *   field is empty.
+   *
+   * @throws \InvalidArgumentException|\Drupal\Component\Serialization\Exception\InvalidDataTypeException
+   *   Throws exception when the field does not exist or is not of "daterange"
+   *   type.
    */
   public function resolve(FieldableEntityInterface $entity, string $field_name, ?string $date_format = NULL, RefinableCacheableDependencyInterface $metadata): array {
     if (!$entity->hasField($field_name)) {
@@ -66,15 +71,11 @@ class DateRange extends DataProducerPluginBase {
       );
     }
 
-    // The field might be optional.
-    $date_range = $entity->get($field_name)->first()?->getValue();
-
-    if (!$date_range) {
-      return [
-        'start' => NULL,
-        'end' => NULL,
-      ];
+    if ($entity->get($field_name)->isEmpty()) {
+      return NULL;
     }
+
+    $date_range = $entity->get($field_name)->first()->getValue();
 
     if ($date_format) {
       foreach ($date_range as &$date) {
