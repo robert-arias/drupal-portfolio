@@ -55,6 +55,13 @@ class MainSchema extends SdlSchemaPluginBase {
         ->map('bundles', $builder->fromValue(['job']))
         ->map('id', $builder->fromArgument('id'))
     );
+
+    $registry->addFieldResolver($type_name, 'education',
+      $builder->produce('entity_load')
+        ->map('type', $builder->fromValue('node'))
+        ->map('bundles', $builder->fromValue(['education']))
+        ->map('id', $builder->fromArgument('id'))
+    );
   }
 
   /**

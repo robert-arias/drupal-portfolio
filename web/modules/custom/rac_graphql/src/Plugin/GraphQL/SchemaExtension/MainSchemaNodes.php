@@ -29,8 +29,9 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
 
     $this->addNodeInterfaceTypeResolver($registry);
 
-    $this->addNodeLandingPageFields($registry, $builder);
+    $this->addNodeLandingPageFields('NodeLandingPage', $registry, $builder);
     $this->addNodeJobFields('NodeJob', $registry, $builder);
+    $this->addNodeEducationFields('NodeEducation', $registry, $builder);
   }
 
   /**
@@ -53,6 +54,9 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
 
           case 'job':
             return 'NodeJob';
+
+          case 'education':
+            return 'NodeEducation';
         }
       }
 
@@ -63,23 +67,25 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
   /**
    * Add landing page field resolvers.
    *
+   * @param string $type_name
+   *   The GraphQL schema type name to resove fields to.
    * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
    *   The resolver registry.
    * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
    *   The resolver builder.
    */
-  protected function addNodeLandingPageFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver('NodeLandingPage', 'id',
+  protected function addNodeLandingPageFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'id',
       $builder->produce('entity_id')
         ->map('entity', $builder->fromParent())
     );
 
-    $registry->addFieldResolver('NodeLandingPage', 'title',
+    $registry->addFieldResolver($type_name, 'title',
       $builder->produce('entity_label')
         ->map('entity', $builder->fromParent())
     );
 
-    $registry->addFieldResolver('NodeLandingPage', 'author',
+    $registry->addFieldResolver($type_name, 'author',
       $builder->compose(
         $builder->produce('entity_owner')
           ->map('entity', $builder->fromParent()),
@@ -125,7 +131,7 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
     $registry->addFieldResolver($type_name, 'jobPeriod',
       $builder->produce('date_range')
         ->map('entity', $builder->fromParent())
-        ->map('field_name', $builder->fromValue('field_job_period'))
+        ->map('field_name', $builder->fromValue('field_date_range'))
     );
 
     $registry->addFieldResolver($type_name, 'description',
@@ -141,6 +147,71 @@ class MainSchemaNodes extends SdlSchemaExtensionPluginBase {
           ->map('entity', $builder->fromParent()),
         $builder->produce('entity_label')
           ->map('entity', $builder->fromParent())
+      )
+    );
+  }
+
+  /**
+   * Add education field resolvers.
+   *
+   * @param string $type_name
+   *   The GraphQL schema type name to resove fields to.
+   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
+   *   The resolver registry.
+   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
+   *   The resolver builder.
+   */
+  protected function addNodeEducationFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'id',
+      $builder->produce('entity_id')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver($type_name, 'title',
+      $builder->produce('entity_label')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver($type_name, 'degreeTitle',
+      $builder->produce('entity_label')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver($type_name, 'institution',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('field_institution.value'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:node'))
+    );
+
+    $registry->addFieldResolver($type_name, 'academicPeriod',
+      $builder->produce('date_range')
+        ->map('entity', $builder->fromParent())
+        ->map('field_name', $builder->fromValue('field_date_range'))
+    );
+
+    $registry->addFieldResolver($type_name, 'description',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('body.processed'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:node'))
+    );
+
+    $registry->addFieldResolver($type_name, 'author',
+      $builder->compose(
+        $builder->produce('entity_owner')
+          ->map('entity', $builder->fromParent()),
+        $builder->produce('entity_label')
+          ->map('entity', $builder->fromParent())
+      )
+    );
+
+    $registry->addFieldResolver($type_name, 'url',
+      $builder->compose(
+        $builder->produce('entity_url')
+          ->map('entity', $builder->fromParent()),
+        $builder->produce('url_path')
+          ->map('url', $builder->fromParent())
       )
     );
   }

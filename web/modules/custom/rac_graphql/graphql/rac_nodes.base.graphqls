@@ -5,6 +5,7 @@
 interface NodeInterface {
   id: ID!
   title: String!
+  author: String
 }
 
 type NodeLandingPage implements NodeInterface {
@@ -16,9 +17,20 @@ type NodeLandingPage implements NodeInterface {
 type NodeJob implements NodeInterface {
   id: ID!
   title: String!
+  author: String
   jobTitle: String!
   company: String!
   jobPeriod: DateRange!
   description: String!
+}
+
+type NodeEducation implements NodeInterface {
+  id: ID!
+  title: String!
   author: String
+  degreeTitle: String!
+  institution: String!
+  academicPeriod: DateRange!
+  description: String
+  url: String!
 }

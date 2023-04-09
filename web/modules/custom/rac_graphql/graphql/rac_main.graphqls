@@ -17,6 +17,7 @@ schema {
 type Query {
   landingPage(id: ID!): NodeLandingPage
   job(id: ID!): NodeJob
+  education(id: ID!): NodeEducation
 }
 
 #
