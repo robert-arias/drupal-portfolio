@@ -4,3 +4,15 @@
  * @file
  * Primary module hooks for RAC Nodes module.
  */
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function rac_nodes_entity_bundle_info_alter(array &$bundles): void {
+  foreach ($bundles['node'] as $type => &$info) {
+    $class = "\\Drupal\\rac_nodes\\Entity\\" . str_replace(' ', '', ucwords(str_replace('_', ' ', $type)));
+    if (class_exists($class)) {
+      $info['class'] = $class;
+    }
+  }
+}
