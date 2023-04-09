@@ -4,8 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.job.body
+    - field.field.node.job.field_company
     - field.field.node.job.field_job_period
-    - field.field.node.job.field_position
     - node.type.job
   module:
     - datetime_range
@@ -32,19 +32,19 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_job_period:
-    type: daterange_default
-    weight: 2
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_position:
+  field_company:
     type: string_textfield
     weight: 1
     region: content
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_job_period:
+    type: daterange_default
+    weight: 2
+    region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path

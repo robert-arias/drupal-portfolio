@@ -1,0 +1,19 @@
+uuid: 822349bc-acf7-4c62-98af-03d9820df523
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company
+    - node.type.job
+id: node.job.field_company
+field_name: field_company
+entity_type: node
+bundle: job
+label: Company
+description: 'The name of the company where you held or currently hold the role'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -5,8 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.job.body
+    - field.field.node.job.field_company
     - field.field.node.job.field_job_period
-    - field.field.node.job.field_position
     - node.type.job
   module:
     - text
@@ -30,5 +30,5 @@ content:
     weight: 100
     region: content
 hidden:
+  field_company: true
   field_job_period: true
-  field_position: true
