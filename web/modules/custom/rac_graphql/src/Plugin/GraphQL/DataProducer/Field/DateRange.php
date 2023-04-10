@@ -21,9 +21,9 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  *     "entity" = @ContextDefinition("entity",
  *       label = @Translation("Entity")
  *     ),
- *     "field_name" = @ContextDefinition("string",
+ *     "field" = @ContextDefinition("string",
  *       label = @Translation("Field Name"),
- *       description = @Translation("The field name to retrieve the date range value")
+ *       description = @Translation("The field name to retrieve the date range value from")
  *     ),
  *    "date_format" = @ContextDefinition("string",
  *       label = @Translation("Date Format"),
@@ -41,12 +41,10 @@ class DateRange extends DataProducerPluginBase {
    *
    * @param \Drupal\Core\Entity\FieldableEntityInterface $entity
    *   The entity to retrieve the date range from.
-   * @param string $field_name
+   * @param string $field
    *   The name of the date range field.
    * @param string|null $date_format
    *   (Optional) The format to convert the dates to.
-   * @param \Drupal\Core\Cache\RefinableCacheableDependencyInterface $metadata
-   *   The cache metadata object.
    *
    * @return array|null
    *   An array containing the start and end dates of the field. NULL if the
@@ -56,26 +54,26 @@ class DateRange extends DataProducerPluginBase {
    *   Throws exception when the field does not exist or is not of "daterange"
    *   type.
    */
-  public function resolve(FieldableEntityInterface $entity, string $field_name, ?string $date_format = NULL, RefinableCacheableDependencyInterface $metadata): array {
-    if (!$entity->hasField($field_name)) {
-      throw new \InvalidArgumentException(sprintf('The field "%s" does not exist on %s entity.', $field_name, $entity->bundle()));
+  public function resolve(FieldableEntityInterface $entity, string $field, ?string $date_format = NULL): array {
+    if (!$entity->hasField($field)) {
+      throw new \InvalidArgumentException(sprintf('The field "%s" does not exist on %s entity.', $field, $entity->bundle()));
     }
 
-    if ($entity->getFieldDefinition($field_name)->getType() !== 'daterange') {
+    if ($entity->getFieldDefinition($field)->getType() !== 'daterange') {
       throw new InvalidDataTypeException(
         sprintf(
           'The field must be of type "daterange", %s given for %s field.',
-          $entity->getFieldDefinition($field_name)->getType(),
-          $field_name
+          $entity->getFieldDefinition($field)->getType(),
+          $field
         )
       );
     }
 
-    if ($entity->get($field_name)->isEmpty()) {
+    if ($entity->get($field)->isEmpty()) {
       return NULL;
     }
 
-    $date_range = $entity->get($field_name)->first()->getValue();
+    $date_range = $entity->get($field)->first()->getValue();
 
     if ($date_format) {
       foreach ($date_range as &$date) {

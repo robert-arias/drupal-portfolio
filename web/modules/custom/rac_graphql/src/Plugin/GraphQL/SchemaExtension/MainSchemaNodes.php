@@ -110,7 +110,7 @@ class MainSchemaNodes extends GraphqlNodeBase {
     $registry->addFieldResolver($type_name, 'jobPeriod',
       $builder->produce('date_range')
         ->map('entity', $builder->fromParent())
-        ->map('field_name', $builder->fromValue('field_date_range'))
+        ->map('field', $builder->fromValue('field_date_range'))
     );
 
     $registry->addFieldResolver($type_name, 'description',
@@ -149,7 +149,7 @@ class MainSchemaNodes extends GraphqlNodeBase {
     $registry->addFieldResolver($type_name, 'academicPeriod',
       $builder->produce('date_range')
         ->map('entity', $builder->fromParent())
-        ->map('field_name', $builder->fromValue('field_date_range'))
+        ->map('field', $builder->fromValue('field_date_range'))
     );
 
     $registry->addFieldResolver($type_name, 'description',
