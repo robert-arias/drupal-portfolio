@@ -3,7 +3,6 @@
 namespace Drupal\rac_graphql\Plugin\GraphQL\DataProducer\Field;
 
 use Drupal\Component\Serialization\Exception\InvalidDataTypeException;
-use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 

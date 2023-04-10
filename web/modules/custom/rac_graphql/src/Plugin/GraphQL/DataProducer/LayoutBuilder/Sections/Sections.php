@@ -10,8 +10,8 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  *
  * @DataProducer(
  *   id = "layout_builder_sections",
- *   name = @Translation("Layout Sections"),
- *   description = @Translation("Resolves the layout sections of the entity."),
+ *   name = @Translation("Layout Builder Sections"),
+ *   description = @Translation("Resolves the layout builder sections of the entity."),
  *   produces = @ContextDefinition("any",
  *     label = @Translation("Section"),
  *   ),
@@ -33,7 +33,7 @@ class Sections extends DataProducerPluginBase {
    * @return \Drupal\layout_builder\Section[]
    *   A sequentially and numerically keyed array of section objects.
    */
-  public function resolve(FieldableEntityInterface $entity) {
+  public function resolve(FieldableEntityInterface $entity): ?string {
     if (!$entity->hasField('layout_builder__layout')) {
       throw new \InvalidArgumentException(sprintf('The node "%s" does not have layout builder configured', $entity->bundle()));
     }

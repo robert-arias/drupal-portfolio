@@ -2,32 +2,14 @@
 # Layout Builder Types.
 ########################################
 
-interface SectionInterface {
+type Section {
   sectionId: String!
-  label: String,
-  background: BackgroundProperties
-  margin: MarginProperties
-  padding: PaddingProperties
-  container: ContainerProperties
-}
-
-type OneColumnSection {
-  sectionId: String!
-  label: String,
-  background: BackgroundProperties
-  margin: MarginProperties
-  padding: PaddingProperties
-  container: ContainerProperties
-}
-
-type MultipleColumnSection implements SectionInterface {
-  sectionId: String!
-  label: String,
+  label: String
   grid: GridProperties
-  background: BackgroundProperties
-  margin: MarginProperties
-  padding: PaddingProperties
-  container: ContainerProperties
+  # background: BackgroundProperties
+  # margin: MarginProperties
+  # padding: PaddingProperties
+  # container: ContainerProperties
 }
 
 type GridProperties {
@@ -38,29 +20,29 @@ type GridProperties {
   alignItems: String!
 }
 
-type BackgroundProperties {
-  backgroundColor: String!
-}
+# type BackgroundProperties {
+#   backgroundColor: String!
+# }
 
-type MarginProperties {
-  top: String!
-  bottom: String!
-  left: String!
-  right: String!
-  topBottom: String!
-  leftRight: String!
-}
+# type MarginProperties {
+#   top: String!
+#   bottom: String!
+#   left: String!
+#   right: String!
+#   topBottom: String!
+#   leftRight: String!
+# }
 
-type PaddingProperties {
-  top: String!
-  bottom: String!
-  left: String!
-  right: String!
-  topBottom: String!
-  leftRight: String!
-}
+# type PaddingProperties {
+#   top: String!
+#   bottom: String!
+#   left: String!
+#   right: String!
+#   topBottom: String!
+#   leftRight: String!
+# }
 
-type ContainerProperties {
-  width: String!
-  height: String!
-}
+# type ContainerProperties {
+#   width: String!
+#   height: String!
+# }
