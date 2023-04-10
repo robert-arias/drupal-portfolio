@@ -363,12 +363,15 @@ workflows:
     jobs:
       - static_tests
       - build
-      # This is doesn't set the branch restraints because multidevs can be
-      # created using any branch.
       - deploy_to_pantheon:
           requires:
             - static_tests
             - build
+          filters:
+            branches:
+              only:
+                - 'main'
+                - 'master'
       - hold-dev:
           type: approval
           requires:
