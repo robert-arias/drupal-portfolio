@@ -76,6 +76,10 @@ class MainSchemaNodes extends GraphqlNodeBase {
    */
   protected function addNodeLandingPageFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
     $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+    $registry->addFieldResolver($type_name, 'sections',
+      $builder->produce('layout_builder_sections')
+        ->map('entity', $builder->fromParent())
+    );
   }
 
   /**
