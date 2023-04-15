@@ -1,0 +1,27 @@
+########################################
+# Paragraph Types.
+########################################
+
+interface ParagraphInterface {
+  id: ID!
+  bundle: String!
+}
+
+type ParagraphButton implements ParagraphInterface {
+  id: ID!
+  bundle: String!
+  title: String!
+  type: String!
+  content: ParagraphInterface
+}
+
+type ParagraphLink implements ParagraphInterface {
+  id: ID!
+  bundle: String!
+  url: String!
+}
+
+type ParagraphDocument implements ParagraphInterface {
+  id: ID!
+  bundle: String!
+}

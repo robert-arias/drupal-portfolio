@@ -12,7 +12,7 @@ type BlockLandingContent implements BlockContentInterface {
   bundle: String!
   title: String!
   text: String
-  buttons: [ParagraphButton!]!
+  buttons: [ParagraphButton!]
 }
 
 type BlockTitleText implements BlockContentInterface {
