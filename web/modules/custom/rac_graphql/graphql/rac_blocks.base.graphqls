@@ -1,0 +1,18 @@
+########################################
+# Block Content Types.
+########################################
+
+interface BlockContentInterface {
+  id: ID!
+  bundle: String!
+}
+
+type LandingContent implements BlockContentInterface {
+  id: ID!
+  bundle: String!
+}
+
+type TitleText implements BlockContentInterface {
+  id: ID!
+  bundle: String!
+}
