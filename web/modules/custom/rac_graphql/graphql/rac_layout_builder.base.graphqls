@@ -10,7 +10,12 @@ type Section {
   margin: MarginProperties
   padding: PaddingProperties
   container: ContainerProperties
+  content: [Component]
 }
+
+#
+# Field types.
+#
 
 type GridProperties {
   columnGap: String!
@@ -45,4 +50,14 @@ type PaddingProperties {
 type ContainerProperties {
   width: String!
   height: String!
+}
+
+#
+# Component
+#
+
+type Component {
+  uuid: String!
+  region: String!
+  block: BlockContentInterface
 }

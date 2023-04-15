@@ -2,18 +2,20 @@
 
 namespace Drupal\rac_graphql\Plugin\GraphQL\SchemaExtension;
 
+use Drupal\block_content\BlockContentInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\layout_builder\Section;
+use Drupal\layout_builder\SectionComponent;
 
 /**
  * Schema extension file for layout builder sections and components.
  *
  * @SchemaExtension(
  *   id = "rac_layout_builder",
- *   name = @Translation("Main Schema Layout Builder"),
+ *   name = @Translation("Layout Builder Schema Extension"),
  *   description = @Translation("Schema extension for layout builder"),
  *   schema = "rac_main"
  * )
@@ -77,6 +79,7 @@ class LayoutBuilderSchemaExtension extends SdlSchemaExtensionPluginBase {
 
     $this->addLayoutBuilderSectionFields('Section', $registry, $builder);
     $this->addLayoutBuilderPropertyFields($registry, $builder);
+    $this->addLayoutBuilderComponent('Component', $registry, $builder);
   }
 
   /**
@@ -109,6 +112,11 @@ class LayoutBuilderSchemaExtension extends SdlSchemaExtensionPluginBase {
         )
       );
     }
+
+    $registry->addFieldResolver($type_name, 'content',
+      $builder->produce('section_components')
+        ->map('section', $builder->fromParent())
+    );
   }
 
   /**
@@ -129,6 +137,46 @@ class LayoutBuilderSchemaExtension extends SdlSchemaExtensionPluginBase {
         );
       }
     }
+  }
+
+  /**
+   * Add  section content field resolvers.
+   *
+   * @param string $type_name
+   *   The GraphQL schema type name to resove fields to.
+   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
+   *   The resolver registry.
+   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
+   *   The resolver builder.
+   */
+  protected function addLayoutBuilderComponent(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'uuid',
+      $builder->callback(
+        fn(SectionComponent $component): string => $component->getUuid()
+      )
+    );
+
+    $registry->addFieldResolver($type_name, 'region',
+      $builder->callback(
+        fn(SectionComponent $component): string => $component->getRegion()
+      )
+    );
+
+    $registry->addFieldResolver($type_name, 'block',
+      $builder->produce('entity_load_by_uuid')
+        ->map('type', $builder->fromValue('block_content'))
+        ->map('uuid', $builder->callback(
+            function (SectionComponent $component): string {
+              $b = $component->getUuid();
+              return $component->getUuid();
+            }
+          )
+        )
+        ->map('bundle', $builder->callback(
+            fn(SectionComponent $component): string => $component->get('configuration')['type']
+          )
+        )
+      );
   }
 
 }

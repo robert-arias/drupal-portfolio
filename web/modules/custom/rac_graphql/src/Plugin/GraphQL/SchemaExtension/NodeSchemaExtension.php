@@ -14,7 +14,7 @@ use GraphQL\Error\Error;
  *
  * @SchemaExtension(
  *   id = "rac_nodes",
- *   name = @Translation("Main Schema Nodes"),
+ *   name = @Translation("Node Schema Extension"),
  *   description = @Translation("Schema extension for nodes"),
  *   schema = "rac_main"
  * )
@@ -46,9 +46,9 @@ class NodeSchemaExtension extends GraphqlNodeBase {
    *   Exception when the node interface couldn't be resolved.
    */
   protected function addNodeInterfaceTypeResolver(ResolverRegistryInterface $registry): void {
-    $registry->addTypeResolver('NodeInterface', function ($value) {
-      if ($value instanceof NodeInterface) {
-        switch ($value->bundle()) {
+    $registry->addTypeResolver('NodeInterface', function ($entity) {
+      if ($entity instanceof NodeInterface) {
+        switch ($entity->bundle()) {
           case 'landing_page':
             return 'NodeLandingPage';
 
