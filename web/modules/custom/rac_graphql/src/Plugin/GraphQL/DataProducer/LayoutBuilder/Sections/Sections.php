@@ -33,7 +33,7 @@ class Sections extends DataProducerPluginBase {
    * @return \Drupal\layout_builder\Section[]
    *   A sequentially and numerically keyed array of section objects.
    */
-  public function resolve(FieldableEntityInterface $entity): ?string {
+  public function resolve(FieldableEntityInterface $entity): ?array {
     if (!$entity->hasField('layout_builder__layout')) {
       throw new \InvalidArgumentException(sprintf('The node "%s" does not have layout builder configured', $entity->bundle()));
     }

@@ -25,12 +25,16 @@ class MainSchemaLayoutBuilder extends SdlSchemaExtensionPluginBase {
    */
   const SECTION_TYPE_FIELDS = [
     'grid',
-    // 'background',
-    // 'margin',
-    // 'padding',
-    // 'container',
+    'background',
+    'margin',
+    'padding',
+    'container',
   ];
 
+  /**
+   * Maps out the section custom type fields with the schema field name and the
+   * Drupal field name.
+   */
   const SECTION_PROPERTIES_MAP = [
     'GridProperties' => [
       'columnGap' => 'column_gap',
@@ -38,6 +42,29 @@ class MainSchemaLayoutBuilder extends SdlSchemaExtensionPluginBase {
       'columnBreakpoint' => 'column_breakpoint',
       'columnWidth' => 'column_width',
       'alignItems' => 'align_items',
+    ],
+    'BackgroundProperties' => [
+      'backgroundColor' => 'background',
+    ],
+    'MarginProperties' => [
+      'top' => 'top_margin',
+      'bottom' => 'bottom_margin',
+      'left' => 'left_margin',
+      'right' => 'right_margin',
+      'topBottom' => 'equal_top_bottom_margins',
+      'leftRight' => 'equal_left_right_margins',
+    ],
+    'PaddingProperties' => [
+      'top' => 'top_padding',
+      'bottom' => 'bottom_padding',
+      'left' => 'left_padding',
+      'right' => 'right_padding',
+      'topBottom' => 'equal_top_bottom_paddings',
+      'leftRight' => 'equal_left_right_paddings',
+    ],
+    'ContainerProperties' => [
+      'width' => 'container',
+      'height' => 'height',
     ],
   ];
 
@@ -48,10 +75,11 @@ class MainSchemaLayoutBuilder extends SdlSchemaExtensionPluginBase {
     $builder = new ResolverBuilder();
 
     $this->addLayoutBuilderSectionFields('Section', $registry, $builder);
+    $this->addLayoutBuilderPropertyFields($registry, $builder);
   }
 
   /**
-   * Add landing page field resolvers.
+   * Add layout builder section field resolvers.
    *
    * @param string $type_name
    *   The GraphQL schema type name to resove fields to.
@@ -80,7 +108,17 @@ class MainSchemaLayoutBuilder extends SdlSchemaExtensionPluginBase {
         )
       );
     }
+  }
 
+  /**
+   * Add section field type resolvers.
+   *
+   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
+   *   The resolver registry.
+   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
+   *   The resolver builder.
+   */
+  protected function addLayoutBuilderPropertyFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
     foreach (self::SECTION_PROPERTIES_MAP as $type => $fields) {
       foreach ($fields as $schema_field => $section_field) {
         $registry->addFieldResolver($type, $schema_field,
