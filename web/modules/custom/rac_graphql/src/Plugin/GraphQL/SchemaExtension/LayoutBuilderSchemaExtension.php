@@ -2,7 +2,6 @@
 
 namespace Drupal\rac_graphql\Plugin\GraphQL\SchemaExtension;
 
-use Drupal\block_content\BlockContentInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
@@ -163,17 +162,18 @@ class LayoutBuilderSchemaExtension extends SdlSchemaExtensionPluginBase {
     );
 
     $registry->addFieldResolver($type_name, 'block',
-      $builder->produce('entity_load_by_uuid')
+      $builder->produce('entity_load_by_revision_id')
         ->map('type', $builder->fromValue('block_content'))
-        ->map('uuid', $builder->callback(
-            function (SectionComponent $component): string {
-              $b = $component->getUuid();
-              return $component->getUuid();
-            }
+        ->map('revision_id', $builder->callback(
+            fn(SectionComponent $component): string => $component->get('configuration')['block_revision_id']
           )
         )
-        ->map('bundle', $builder->callback(
-            fn(SectionComponent $component): string => $component->get('configuration')['type']
+        ->map('bundles', $builder->callback(
+            function (SectionComponent $component): array {
+              $id = $component->get('configuration')['id'];
+              $bundle = explode(':', $id)[1] ?? NULL;
+              return [$bundle];
+            }
           )
         )
       );
