@@ -38,7 +38,7 @@ class SectionField extends DataProducerPluginBase {
    * @return string|null
    *   The field value or NULL if non existant.
    */
-  public function resolve(Section $section, string $field) {
+  public function resolve(Section $section, string $field): ?string {
     return $section->getLayoutSettings()[$field] ?? NULL;
   }
 

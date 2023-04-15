@@ -176,7 +176,7 @@ class LayoutBuilderSchemaExtension extends SdlSchemaExtensionPluginBase {
             }
           )
         )
-      );
+    );
   }
 
 }

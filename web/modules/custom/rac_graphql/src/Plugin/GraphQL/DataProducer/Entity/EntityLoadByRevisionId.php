@@ -147,7 +147,7 @@ class EntityLoadByRevisionId extends DataProducerPluginBase implements Container
    * @return \GraphQL\Deferred
    *   The loaded entity.
    */
-  public function resolve(string $type, int $revision_id, ?string $language, ?array $bundles, ?bool $access, ?AccountInterface $accessUser, ?string $accessOperation, FieldContext $context) {
+  public function resolve(string $type, int $revision_id, ?string $language, ?array $bundles, ?bool $access, ?AccountInterface $accessUser, ?string $accessOperation, FieldContext $context): Deferred {
     $resolver = $this->entityBuffer->add($type, $revision_id);
 
     return new Deferred(function () use ($type, $language, $bundles, $resolver, $context, $access, $accessUser, $accessOperation) {

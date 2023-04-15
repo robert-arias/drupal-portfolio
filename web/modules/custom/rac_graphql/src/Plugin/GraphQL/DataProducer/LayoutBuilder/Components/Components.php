@@ -38,11 +38,13 @@ class Components extends DataProducerPluginBase {
   public function resolve(Section $section): Deferred {
     return new Deferred(function () use ($section) {
       $components = $section->getComponents();
-      uasort($components, function (SectionComponent $a, SectionComponent $b) {
-        return $a->getWeight() - $b->getWeight();
-      });
+
+      uasort($components,
+        fn(SectionComponent $a, SectionComponent $b): int => $a->getWeight() - $b->getWeight()
+      );
 
       return $components;
     });
   }
+
 }
