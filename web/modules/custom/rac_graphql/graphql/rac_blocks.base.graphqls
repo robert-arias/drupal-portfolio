@@ -7,15 +7,15 @@ interface BlockContentInterface {
   bundle: String!
 }
 
-type LandingContent implements BlockContentInterface {
+type BlockLandingContent implements BlockContentInterface {
   id: ID!
   bundle: String!
   title: String!
   text: String
-  # buttons: [ParagraphInterface]
+  buttons: [ParagraphButton!]!
 }
 
-type TitleText implements BlockContentInterface {
+type BlockTitleText implements BlockContentInterface {
   id: ID!
   bundle: String!
   headingLevel: String!

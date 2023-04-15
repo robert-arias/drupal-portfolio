@@ -88,6 +88,12 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
         ->map('value', $builder->fromParent())
         ->map('type', $builder->fromValue('entity:block_content'))
     );
+
+    $registry->addFieldResolver($type_name, 'buttons',
+      $builder->produce('entity_reference_revisions')
+        ->map('entity', $builder->fromParent())
+        ->map('field', $builder->fromValue('field_buttons'))
+    );
   }
 
   /**
