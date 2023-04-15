@@ -5,8 +5,9 @@ namespace Drupal\rac_graphql\Plugin\GraphQL\SchemaExtension;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\node\NodeInterface;
-use Drupal\rac_graphql\GraphqlNodeBase;
+use Drupal\rac_graphql\EntitySchemaResolverInterface;
 use GraphQL\Error\Error;
 
 /**
@@ -19,7 +20,7 @@ use GraphQL\Error\Error;
  *   schema = "rac_main"
  * )
  */
-class NodeSchemaExtension extends GraphqlNodeBase {
+class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements EntitySchemaResolverInterface {
 
   /**
    * {@inheritdoc}
@@ -157,6 +158,39 @@ class NodeSchemaExtension extends GraphqlNodeBase {
         ->map('path', $builder->fromValue('body.processed'))
         ->map('value', $builder->fromParent())
         ->map('type', $builder->fromValue('entity:node'))
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function resolveDefaultNodeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'id',
+      $builder->produce('entity_id')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver($type_name, 'title',
+      $builder->produce('entity_label')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver($type_name, 'author',
+      $builder->compose(
+        $builder->produce('entity_owner')
+          ->map('entity', $builder->fromParent()),
+        $builder->produce('entity_label')
+          ->map('entity', $builder->fromParent())
+      )
+    );
+
+    $registry->addFieldResolver($type_name, 'url',
+      $builder->compose(
+        $builder->produce('entity_url')
+          ->map('entity', $builder->fromParent()),
+        $builder->produce('url_path')
+          ->map('url', $builder->fromParent())
+      )
     );
   }
 

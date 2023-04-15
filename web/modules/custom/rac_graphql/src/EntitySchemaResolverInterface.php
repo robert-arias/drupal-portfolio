@@ -8,7 +8,7 @@ use Drupal\graphql\GraphQL\ResolverRegistry;
 /**
  * Interface for GraphQL node types.
  */
-interface GraphqlNodeInterface {
+interface EntitySchemaResolverInterface {
 
   /**
    * Resolve the default fields all GraphQL node types must have.
