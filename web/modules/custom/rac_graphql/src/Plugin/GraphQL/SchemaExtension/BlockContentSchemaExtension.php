@@ -74,6 +74,20 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
    */
   protected function addBlockLandingContentFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
     $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+
+    $registry->addFieldResolver($type_name, 'title',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('field_title.value'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:block_content'))
+    );
+
+    $registry->addFieldResolver($type_name, 'text',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('field_text.processed'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:block_content'))
+    );
   }
 
   /**
@@ -88,6 +102,27 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
    */
   protected function addBlockTitleTextFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
     $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+
+    $registry->addFieldResolver($type_name, 'headingLevel',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('field_heading_level.value'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:block_content'))
+    );
+
+    $registry->addFieldResolver($type_name, 'title',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('field_title.value'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:block_content'))
+    );
+
+    $registry->addFieldResolver($type_name, 'text',
+      $builder->produce('property_path')
+        ->map('path', $builder->fromValue('field_text.processed'))
+        ->map('value', $builder->fromParent())
+        ->map('type', $builder->fromValue('entity:block_content'))
+    );
   }
 
   /**

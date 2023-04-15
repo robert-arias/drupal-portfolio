@@ -10,9 +10,15 @@ interface BlockContentInterface {
 type LandingContent implements BlockContentInterface {
   id: ID!
   bundle: String!
+  title: String!
+  text: String
+  # buttons: [ParagraphInterface]
 }
 
 type TitleText implements BlockContentInterface {
   id: ID!
   bundle: String!
+  headingLevel: String!
+  title: String!
+  text: String
 }
