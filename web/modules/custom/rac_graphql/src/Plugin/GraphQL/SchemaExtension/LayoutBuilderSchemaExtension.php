@@ -18,7 +18,7 @@ use Drupal\layout_builder\Section;
  *   schema = "rac_main"
  * )
  */
-class MainSchemaLayoutBuilder extends SdlSchemaExtensionPluginBase {
+class LayoutBuilderSchemaExtension extends SdlSchemaExtensionPluginBase {
 
   /**
    * The section type fields that resolve another type.
@@ -32,8 +32,9 @@ class MainSchemaLayoutBuilder extends SdlSchemaExtensionPluginBase {
   ];
 
   /**
-   * Maps out the section custom type fields with the schema field name and the
-   * Drupal field name.
+   * Maps out the section custom type fields.
+   *
+   * It maps it out with the schema field name and the Drupal field name.
    */
   const SECTION_PROPERTIES_MAP = [
     'GridProperties' => [

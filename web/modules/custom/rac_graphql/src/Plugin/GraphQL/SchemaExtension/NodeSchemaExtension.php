@@ -19,7 +19,7 @@ use GraphQL\Error\Error;
  *   schema = "rac_main"
  * )
  */
-class MainSchemaNodes extends GraphqlNodeBase {
+class NodeSchemaExtension extends GraphqlNodeBase {
 
   /**
    * {@inheritdoc}
