@@ -8,6 +8,7 @@ use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
+use Drupal\rac_graphql\EntitySchemaResolverInterface;
 use GraphQL\Error\Error;
 
 /**
@@ -20,7 +21,7 @@ use GraphQL\Error\Error;
  *   schema = "rac_main"
  * )
  */
-class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase {
+class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implements EntitySchemaResolverInterface {
 
   /**
    * {@inheritdoc}
@@ -72,16 +73,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase {
    *   The resolver builder.
    */
   protected function addBlockLandingContentFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $registry->addFieldResolver($type_name, 'bundle',
-      $builder->callback(
-        fn(BlockContent $block): string => $block->bundle()
-      )
-    );
+    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
   }
 
   /**
@@ -95,6 +87,13 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase {
    *   The resolver builder.
    */
   protected function addBlockTitleTextFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function resolveDefaultNodeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
     $registry->addFieldResolver($type_name, 'id',
       $builder->produce('entity_id')
         ->map('entity', $builder->fromParent())
