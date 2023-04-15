@@ -6,12 +6,12 @@ use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 
 /**
- * Interface for GraphQL node types.
+ * Interface for GraphQL entity types.
  */
 interface EntitySchemaResolverInterface {
 
   /**
-   * Resolve the default fields all GraphQL node types must have.
+   * Resolve the default fields all GraphQL entity types must have.
    *
    * The default fields are the ones described on the NodeInterface interface in
    * the rac_nodes.base.graphql schema.
@@ -23,6 +23,6 @@ interface EntitySchemaResolverInterface {
    * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
    *   The resolver builder.
    */
-  public function resolveDefaultNodeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void;
+  public function resolveDefaultEntityFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void;
 
 }

@@ -31,8 +31,8 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
 
     $this->addBlockContentInterfaceTypeResolver($registry);
 
-    $this->addBlockLandingContentFields('LandingContent', $registry, $builder);
-    $this->addBlockTitleTextFields('TitleText', $registry, $builder);
+    $this->addBlockLandingContentFields('BlockLandingContent', $registry, $builder);
+    $this->addBlockTitleTextFields('BlockTitleText', $registry, $builder);
   }
 
   /**
@@ -51,10 +51,10 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
       if ($entity instanceof BlockContentInterface) {
         switch ($entity->bundle()) {
           case 'landing_content':
-            return 'LandingContent';
+            return 'BlockLandingContent';
 
           case 'title_and_text':
-            return 'TitleText';
+            return 'BlockTitleText';
         }
       }
 
@@ -63,7 +63,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
   }
 
   /**
-   * Add landing page field resolvers.
+   * Add block landing content field resolvers.
    *
    * @param string $type_name
    *   The GraphQL schema type name to resove fields to.
@@ -73,7 +73,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
    *   The resolver builder.
    */
   protected function addBlockLandingContentFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'title',
       $builder->produce('property_path')
@@ -91,7 +91,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
   }
 
   /**
-   * Add job field resolvers.
+   * Add block title and text resolvers.
    *
    * @param string $type_name
    *   The GraphQL schema type name to resove fields to.
@@ -101,7 +101,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
    *   The resolver builder.
    */
   protected function addBlockTitleTextFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'headingLevel',
       $builder->produce('property_path')
@@ -128,7 +128,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
   /**
    * {@inheritdoc}
    */
-  public function resolveDefaultNodeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+  public function resolveDefaultEntityFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
     $registry->addFieldResolver($type_name, 'id',
       $builder->produce('entity_id')
         ->map('entity', $builder->fromParent())

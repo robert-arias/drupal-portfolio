@@ -76,7 +76,7 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
    *   The resolver builder.
    */
   protected function addNodeLandingPageFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'sections',
       $builder->produce('layout_builder_sections')
@@ -95,7 +95,7 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
    *   The resolver builder.
    */
   protected function addNodeJobFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'jobTitle',
       $builder->produce('entity_label')
@@ -134,7 +134,7 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
    *   The resolver builder.
    */
   protected function addNodeEducationFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultNodeFields($type_name, $registry, $builder);
+    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
 
     $registry->addFieldResolver($type_name, 'degreeTitle',
       $builder->produce('entity_label')
@@ -165,7 +165,7 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
   /**
    * {@inheritdoc}
    */
-  public function resolveDefaultNodeFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+  public function resolveDefaultEntityFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
     $registry->addFieldResolver($type_name, 'id',
       $builder->produce('entity_id')
         ->map('entity', $builder->fromParent())
