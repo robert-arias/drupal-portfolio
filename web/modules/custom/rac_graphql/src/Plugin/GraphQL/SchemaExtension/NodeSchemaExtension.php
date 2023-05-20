@@ -29,6 +29,7 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
     $builder = new ResolverBuilder();
 
     $this->addNodeInterfaceTypeResolver($registry);
+    $this->resolveDefaultEntityFields($registry, $builder);
 
     $this->addNodeLandingPageFields('NodeLandingPage', $registry, $builder);
     $this->addNodeJobFields('NodeJob', $registry, $builder);
@@ -76,8 +77,6 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
    *   The resolver builder.
    */
   protected function addNodeLandingPageFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'sections',
       $builder->produce('layout_builder_sections')
         ->map('entity', $builder->fromParent())
@@ -95,8 +94,6 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
    *   The resolver builder.
    */
   protected function addNodeJobFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'jobTitle',
       $builder->produce('entity_label')
         ->map('entity', $builder->fromParent())
@@ -134,8 +131,6 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
    *   The resolver builder.
    */
   protected function addNodeEducationFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'degreeTitle',
       $builder->produce('entity_label')
         ->map('entity', $builder->fromParent())
@@ -165,34 +160,43 @@ class NodeSchemaExtension extends SdlSchemaExtensionPluginBase implements Entity
   /**
    * {@inheritdoc}
    */
-  public function resolveDefaultEntityFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
+  public function resolveDefaultEntityFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $types = [
+      'NodeLandingPage',
+      'NodeJob',
+      'NodeEducation',
+    ];
 
-    $registry->addFieldResolver($type_name, 'title',
-      $builder->produce('entity_label')
-        ->map('entity', $builder->fromParent())
-    );
+    foreach ($types as $type) {
+      $registry->addFieldResolver($type, 'id',
+        $builder->produce('entity_id')
+          ->map('entity', $builder->fromParent())
+      );
 
-    $registry->addFieldResolver($type_name, 'author',
-      $builder->compose(
-        $builder->produce('entity_owner')
-          ->map('entity', $builder->fromParent()),
+      $registry->addFieldResolver($type, 'title',
         $builder->produce('entity_label')
           ->map('entity', $builder->fromParent())
-      )
-    );
+      );
 
-    $registry->addFieldResolver($type_name, 'url',
-      $builder->compose(
-        $builder->produce('entity_url')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('url_path')
-          ->map('url', $builder->fromParent())
-      )
-    );
+      $registry->addFieldResolver($type, 'author',
+        $builder->compose(
+          $builder->produce('entity_owner')
+            ->map('entity', $builder->fromParent()),
+          $builder->produce('entity_label')
+            ->map('entity', $builder->fromParent())
+        )
+      );
+
+      $registry->addFieldResolver($type, 'url',
+        $builder->compose(
+          $builder->produce('entity_url')
+            ->map('entity', $builder->fromParent()),
+          $builder->produce('url_path')
+            ->map('url', $builder->fromParent())
+        )
+      );
+    }
+
   }
 
 }

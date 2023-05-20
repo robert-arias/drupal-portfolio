@@ -31,6 +31,7 @@ class ParagraphSchemaExtension extends SdlSchemaExtensionPluginBase implements E
     $builder = new ResolverBuilder();
 
     $this->addParagraphInterfaceTypeResolver($registry);
+    $this->resolveDefaultEntityFields($registry, $builder);
 
     $this->addParagraphButtonFields('ParagraphButton', $registry, $builder);
     $this->addParagraphLinkFields('ParagraphLink', $registry, $builder);
@@ -78,8 +79,6 @@ class ParagraphSchemaExtension extends SdlSchemaExtensionPluginBase implements E
    *   The resolver builder.
    */
   protected function addParagraphButtonFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'title',
       $builder->produce('property_path')
         ->map('path', $builder->fromValue('field_title.value'))
@@ -113,8 +112,6 @@ class ParagraphSchemaExtension extends SdlSchemaExtensionPluginBase implements E
    *   The resolver builder.
    */
   protected function addParagraphLinkFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'url',
       $builder->compose(
         $builder->produce('property_path')
@@ -141,23 +138,30 @@ class ParagraphSchemaExtension extends SdlSchemaExtensionPluginBase implements E
    *   The resolver builder.
    */
   protected function addParagraphDocumentFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function resolveDefaultEntityFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
+  public function resolveDefaultEntityFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $types = [
+      'ParagraphButton',
+      'ParagraphLink',
+      'ParagraphDocument',
+    ];
 
-    $registry->addFieldResolver($type_name, 'bundle',
-      $builder->callback(
-        fn(EntityInterface $entity): string => $entity->bundle()
-      )
-    );
+    foreach ($types as $type) {
+      $registry->addFieldResolver($type, 'id',
+        $builder->produce('entity_id')
+          ->map('entity', $builder->fromParent())
+      );
+
+      $registry->addFieldResolver($type, 'bundle',
+        $builder->produce('entity_bundle')
+          ->map('entity', $builder->fromParent())
+      );
+    }
+
   }
 
 }

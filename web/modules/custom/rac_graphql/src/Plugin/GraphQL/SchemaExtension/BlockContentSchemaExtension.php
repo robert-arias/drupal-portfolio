@@ -3,7 +3,6 @@
 namespace Drupal\rac_graphql\Plugin\GraphQL\SchemaExtension;
 
 use Drupal\block_content\BlockContentInterface;
-use Drupal\block_content\Entity\BlockContent;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
@@ -30,6 +29,7 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
     $builder = new ResolverBuilder();
 
     $this->addBlockContentInterfaceTypeResolver($registry);
+    $this->resolveDefaultEntityFields($registry, $builder);
 
     $this->addBlockLandingContentFields('BlockLandingContent', $registry, $builder);
     $this->addBlockTitleTextFields('BlockTitleText', $registry, $builder);
@@ -73,8 +73,6 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
    *   The resolver builder.
    */
   protected function addBlockLandingContentFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'title',
       $builder->produce('property_path')
         ->map('path', $builder->fromValue('field_title.value'))
@@ -107,8 +105,6 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
    *   The resolver builder.
    */
   protected function addBlockTitleTextFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $this->resolveDefaultEntityFields($type_name, $registry, $builder);
-
     $registry->addFieldResolver($type_name, 'headingLevel',
       $builder->produce('property_path')
         ->map('path', $builder->fromValue('field_heading_level.value'))
@@ -134,17 +130,24 @@ class BlockContentSchemaExtension extends SdlSchemaExtensionPluginBase implement
   /**
    * {@inheritdoc}
    */
-  public function resolveDefaultEntityFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
-    $registry->addFieldResolver($type_name, 'id',
-      $builder->produce('entity_id')
-        ->map('entity', $builder->fromParent())
-    );
+  public function resolveDefaultEntityFields(ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $types = [
+      'BlockLandingContent',
+      'BlockTitleText',
+    ];
 
-    $registry->addFieldResolver($type_name, 'bundle',
-      $builder->callback(
-        fn(BlockContent $block): string => $block->bundle()
-      )
-    );
+    foreach ($types as $type) {
+      $registry->addFieldResolver($type, 'id',
+        $builder->produce('entity_id')
+          ->map('entity', $builder->fromParent())
+      );
+
+      $registry->addFieldResolver($type, 'bundle',
+        $builder->produce('entity_bundle')
+          ->map('entity', $builder->fromParent())
+      );
+    }
+
   }
 
 }
