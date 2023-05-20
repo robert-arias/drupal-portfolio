@@ -1,6 +1,6 @@
 {
-    "name": "fourkitchens/sous-drupal-project",
-    "description": "Starter project for Sous a Drupal distribution featuring a theme based on Emulsify Design System.",
+    "name": "robert-arias/portfolio",
+    "description": "Backend portfolio Drupal based.",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "repositories": [
