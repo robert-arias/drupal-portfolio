@@ -42,6 +42,15 @@ class MainSchema extends SdlSchemaPluginBase {
    *   The resolver builder.
    */
   protected function addQueryFields(string $type_name, ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $registry->addFieldResolver($type_name, 'route',
+      $builder->compose(
+        $builder->produce('route_load')
+          ->map('path', $builder->fromArgument('path')),
+        $builder->produce('route_entity')
+          ->map('url', $builder->fromParent())
+      )
+    );
+
     $registry->addFieldResolver($type_name, 'landingPage',
       $builder->produce('entity_load')
         ->map('type', $builder->fromValue('node'))

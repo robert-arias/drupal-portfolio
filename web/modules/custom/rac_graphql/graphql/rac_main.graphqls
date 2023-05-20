@@ -15,6 +15,7 @@ schema {
 #
 
 type Query {
+  route(path: String!): NodeInterface
   landingPage(id: ID!): NodeLandingPage
   job(id: ID!): NodeJob
   education(id: ID!): NodeEducation
