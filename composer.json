@@ -180,7 +180,7 @@
     },
     "scripts": {
         "lint": "find web/modules/custom web/themes/custom -name \"*.php\" '!' -path '*/node_modules/*' -print0 | xargs -0 -n1 -P8 php -l",
-        "code-sniff": "./vendor/bin/phpcs --standard=./vendor/drupal/coder/coder_sniffer/Drupal,./vendor/drupal/coder/coder_sniffer/DrupalPractice --extensions=php,module,install,tet,info.yml,js,md web/modules/custom\n",
+        "code-sniff": "./vendor/bin/phpcs --standard=./vendor/drupal/coder/coder_sniffer/Drupal,./vendor/drupal/coder/coder_sniffer/DrupalPractice --extensions=php,module,install,tet,info.yml,js,md web/modules/custom --ignore=*.md\n",
         "code-fixer": "./vendor/bin/phpcbf --standard=./vendor/drupal/coder/coder_sniffer/Drupal,./vendor/drupal/coder/coder_sniffer/DrupalPractice --extensions=php,module,install,tet,info.yml,js,md web/modules/custom\n",
         "prepare-for-pantheon": "DrupalProject\\composer\\ScriptHandler::prepareForPantheon",
         "post-install-cmd": [
