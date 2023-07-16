@@ -3,8 +3,8 @@
 namespace Drupal\rac_graphql\Plugin\GraphQL\DataProducer\LayoutBuilder\Components;
 
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
-use Drupal\layout_builder\SectionComponent;
 use Drupal\layout_builder\Section;
+use Drupal\layout_builder\SectionComponent;
 use GraphQL\Deferred;
 
 /**
