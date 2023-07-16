@@ -14,14 +14,13 @@ index e4b330517b..f00baf6bb4 100644
    public function getMachineNameSuggestion();
  
 diff --git a/core/lib/Drupal/Core/Block/BlockPluginTrait.php b/core/lib/Drupal/Core/Block/BlockPluginTrait.php
-index acb850ed01..07068cc010 100644
+index acb850ed01..07bd9b122c 100644
 --- a/core/lib/Drupal/Core/Block/BlockPluginTrait.php
 +++ b/core/lib/Drupal/Core/Block/BlockPluginTrait.php
-@@ -246,6 +246,11 @@ public function blockSubmit($form, FormStateInterface $form_state) {
+@@ -246,6 +246,10 @@ public function blockSubmit($form, FormStateInterface $form_state) {
     */
    public function getMachineNameSuggestion() {
      $definition = $this->getPluginDefinition();
-+
 +    if (!isset($definition['admin_label'])) {
 +      return NULL;
 +    }
@@ -30,10 +29,10 @@ index acb850ed01..07068cc010 100644
  
      // @todo This is basically the same as what is done in
 diff --git a/core/modules/block/src/BlockForm.php b/core/modules/block/src/BlockForm.php
-index 902c6827ca..f7d3023a83 100644
+index 90cd6823ff..671808264e 100644
 --- a/core/modules/block/src/BlockForm.php
 +++ b/core/modules/block/src/BlockForm.php
-@@ -382,12 +382,16 @@ protected function submitVisibility(array $form, FormStateInterface $form_state)
+@@ -382,11 +382,15 @@ protected function submitVisibility(array $form, FormStateInterface $form_state)
     * @param \Drupal\block\BlockInterface $block
     *   The block entity.
     *
@@ -43,16 +42,15 @@ index 902c6827ca..f7d3023a83 100644
     */
    public function getUniqueMachineName(BlockInterface $block) {
      $suggestion = $block->getPlugin()->getMachineNameSuggestion();
- 
 +    if (!$suggestion) {
 +      return NULL;
 +    }
 +
-     // Get all the blocks which starts with the suggested machine name.
-     $query = $this->storage->getQuery();
-     $query->condition('id', $suggestion, 'CONTAINS');
+     if ($block->getTheme()) {
+       $suggestion = $block->getTheme() . '_' . $suggestion;
+     }
 diff --git a/core/tests/Drupal/Tests/Core/Block/BlockBaseTest.php b/core/tests/Drupal/Tests/Core/Block/BlockBaseTest.php
-index 996ebf22bc..a4c30f0718 100644
+index 2b9cd98b84..f0c329aebc 100644
 --- a/core/tests/Drupal/Tests/Core/Block/BlockBaseTest.php
 +++ b/core/tests/Drupal/Tests/Core/Block/BlockBaseTest.php
 @@ -40,6 +40,46 @@ public function testGetMachineNameSuggestion($label, $expected) {
@@ -92,7 +90,7 @@ index 996ebf22bc..a4c30f0718 100644
 +    try {
 +      $this->assertEquals(NULL, $block_base->getMachineNameSuggestion());
 +    }
-+    catch(\ErrorException $e) {
++    catch (\ErrorException $e) {
 +      $this->fail('Exception thrown when no label provided.');
 +    }
 +
@@ -106,7 +104,7 @@ index 996ebf22bc..a4c30f0718 100644
      return [
        ['Admin label', 'adminlabel'],
        ['über åwesome', 'uberawesome'],
-+      [NULL, NULL],
++      [NULL, NULL]
      ];
    }
  
